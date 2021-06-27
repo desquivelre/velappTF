@@ -10,43 +10,58 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="Usuario")
+@Table(name="Users")
 public class Usuario {
 	@Id 
-	@Column(name = "CUsuario", length = 4, nullable = false)
-	private Integer CUsuario;
+	@Column(name = "id", length = 4, nullable = false)
+	private Integer id;
 	
 	@Column(name = "Username", length = 20)
-	private String Username;
+	private String username;
 	
 	@Column(name = "Password", length = 20)
-	private String Password;
+	private String password;
 	
 	@OneToMany(mappedBy = "Usuario", fetch = FetchType.LAZY)
 	private List<Cartera> carteras;
+	
+	public boolean enable;
 
-	public Integer getCUsuario() {
-		return CUsuario;
+	public Usuario() {
+		super();
+		// TODO Auto-generated constructor stub
 	}
 
-	public void setCUsuario(Integer cUsuario) {
-		CUsuario = cUsuario;
+	public Usuario(Integer id, String username, String password, List<Cartera> carteras) {
+		super();
+		this.id = id;
+		this.username = username;
+		this.password = password;
+		this.carteras = carteras;
+	}
+
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
 	}
 
 	public String getUsername() {
-		return Username;
+		return username;
 	}
 
 	public void setUsername(String username) {
-		Username = username;
+		this.username = username;
 	}
 
 	public String getPassword() {
-		return Password;
+		return password;
 	}
 
 	public void setPassword(String password) {
-		Password = password;
+		this.password = password;
 	}
 
 	public List<Cartera> getCarteras() {
@@ -57,18 +72,6 @@ public class Usuario {
 		this.carteras = carteras;
 	}
 
-	public Usuario(Integer cUsuario, String username, String password, List<Cartera> carteras) {
-		super();
-		CUsuario = cUsuario;
-		Username = username;
-		Password = password;
-		this.carteras = carteras;
-	}
-
-	public Usuario() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
 	
 	
 	

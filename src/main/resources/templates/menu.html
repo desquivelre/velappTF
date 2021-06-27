@@ -73,7 +73,7 @@
 			</center>
 
 
-			<a th:href="@{'/listacartera'}"><i class="fas fa-desktop"></i><span>Mis carteras</span></a>
+			<a th:href="@{'/listacartera/'+${usuario}}"><i class="fas fa-desktop"></i><span>Mis carteras</span></a>
 			<a th:href="@{'/inicio'}"><i class="fas fa-cogs"></i><span>Log out</span></a>
 		</div>
 		
@@ -91,7 +91,7 @@
 		
 			<div class="derecha">
 				<div class="dabajo">
-					<a th:href="@{'/listacartera'}">
+					<a th:href="@{'/listacartera/'+${usuario.id}}">
 						<button type="button" class="btn btn-success"
 						style="background-color: #0f0f0f ">Empezar</button>
 					</a>

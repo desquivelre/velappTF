@@ -24,9 +24,9 @@ public class MenuController {
 	@GetMapping
 	public String response(Model model) {
 		try {
-			Optional<Usuario> usuario = registerService.findById(1);
+			Optional<Usuario> usuario = registerService.findById(2);
 			if(usuario.isPresent()) {
-				model.addAttribute("usuario", usuario);
+				model.addAttribute("usuario", usuario.get());
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

@@ -17,7 +17,7 @@
 	rel="stylesheet"
 	integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x"
 	crossorigin="anonymous">
-<link rel="stylesheet" th:href="@{css/appoimentStylee.css}">
+<link rel="stylesheet" th:href="@{/css/appoimentStylee.css}">
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css">
 <script
@@ -38,7 +38,7 @@
 			<div class="container-fluid d-flex align-items-center">
 
 				   <img
-					src="img/logo.png" alt="" width="60" height="60"> <a
+					th:src="@{/img/logo.png}" alt="" width="60" height="60"> <a
 					class="navbar-brand d-flex align-items-center"
 					style="margin-left: 20px;" href="#"> Velapp </a>
 
@@ -70,12 +70,12 @@
 
 		<div class="sidebar">
 			<center>
-				<img th:src="@{img/prota.jpg}" class="profile_image" alt="">
+				<img th:src="@{/img/prota.jpg}" class="profile_image" alt="">
 				<h4>Velapp</h4>
 			</center>
 
 
-			<a th:href="@{'/listacartera'}"><i class="fas fa-desktop"></i><span>Mis carteras</span></a>
+			<a th:href="@{'/listacartera/'+${usuario}}"><i class="fas fa-desktop"></i><span>Mis carteras</span></a>
 			<a th:href="@{'/inicio'}"><i class="fas fa-cogs"></i><span>Log out</span></a>
 			
 		</div>
@@ -100,7 +100,7 @@
 	
 		 
       <div class="Cards">
-                <div class="card">
+                <div th:each="usuarios: ${usuario}" class="card">
 			
                     <div class="card-header">
 						<h2>Numero de Cartera :</h2>
@@ -111,7 +111,7 @@
 						<h4>Tipo de tasa :</h4>
 						<h4>Plazo de tasa :</h4>
                         <p class="card-text"></p>
-                        <a th:href="@{'cartera'}" class="fas fa-arrow-alt-circle-right fa-3x" id=ver></a>
+                        <a th:href="@{'/cartera'}" class="fas fa-arrow-alt-circle-right fa-3x" id=ver></a>
                     </div>
                 </div>
             </div>

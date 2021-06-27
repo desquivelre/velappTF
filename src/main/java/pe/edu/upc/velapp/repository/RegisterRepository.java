@@ -13,7 +13,7 @@ public interface RegisterRepository extends JpaRepository<Usuario, Integer> {
 	
 
 	
-	@Query("SELECT c FROM Usuario c WHERE c.CUsuario= :dni")
+	@Query("SELECT c FROM Usuario c WHERE c.id= :dni")
 	List<Usuario>filterById_Usuario(@Param("dni")Integer dni);
 
 }
