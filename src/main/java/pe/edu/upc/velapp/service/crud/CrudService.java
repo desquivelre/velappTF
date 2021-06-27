@@ -6,6 +6,8 @@ import java.util.Optional;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.transaction.annotation.Transactional;
 
+import pe.edu.upc.velapp.entities.Usuario;
+
 public interface CrudService<T, ID> {
 	
 	JpaRepository<T, ID> getRepository();
@@ -34,5 +36,7 @@ public interface CrudService<T, ID> {
 	default void deleteById(ID id) throws Exception { // Elimina el entity (Repository->BD)
 		getRepository().deleteById(id);
 	}
+
+	List<Usuario> filterById_Usuario(Integer dni) throws Exception;
 	
 }
