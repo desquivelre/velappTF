@@ -25,6 +25,9 @@ public class Cartera {
 	@Column(name = "PerTasaNominal", length = 20, nullable = true)
 	private Float PerTasaNominal;
 	
+	@Column(name = "NumDiasTasa", length = 40)
+	private Integer NumDiasTasa;
+	
 	@Column(name = "NumDiasPeriodoCapitalizacion", length = 40, nullable = true)
 	private Integer NumDiasPeriodoCapitalizacion;
 	

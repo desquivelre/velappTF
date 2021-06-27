@@ -19,9 +19,6 @@ public class Tasa {
 	@Column(name = "NTasa", length = 20)
 	private String NTasa;
 	
-	@Column(name = "NumPlazoDias", length = 20)
-	private Integer NumPlazoDias;
-	
 	@OneToMany(mappedBy = "Tasa", fetch = FetchType.LAZY)
 	private List<Cartera> carteras;
 
@@ -30,11 +27,10 @@ public class Tasa {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Tasa(Integer cTasa, String nTasa, Integer numPlazoDias, List<Cartera> carteras) {
+	public Tasa(Integer cTasa, String nTasa, List<Cartera> carteras) {
 		super();
 		CTasa = cTasa;
 		NTasa = nTasa;
-		NumPlazoDias = numPlazoDias;
 		this.carteras = carteras;
 	}
 
@@ -54,14 +50,6 @@ public class Tasa {
 		NTasa = nTasa;
 	}
 
-	public Integer getNumPlazoDias() {
-		return NumPlazoDias;
-	}
-
-	public void setNumPlazoDias(Integer numPlazoDias) {
-		NumPlazoDias = numPlazoDias;
-	}
-
 	public List<Cartera> getCarteras() {
 		return carteras;
 	}
@@ -69,6 +57,10 @@ public class Tasa {
 	public void setCarteras(List<Cartera> carteras) {
 		this.carteras = carteras;
 	}
+
+
+
+	
 	
 	
 }
