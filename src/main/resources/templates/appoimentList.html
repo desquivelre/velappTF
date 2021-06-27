@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
+<html lang="en" dir="ltr" xmlns:th="https://www.thymeleaf.org/">
 <head>
 <!-- Global site tag (gtag.js) - Google Analytics -->
 <script async
@@ -17,7 +17,7 @@
 	rel="stylesheet"
 	integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x"
 	crossorigin="anonymous">
-<link rel="stylesheet" href="css/appoimentStylee.css">
+<link rel="stylesheet" th:href="@{css/appoimentStylee.css}">
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css">
 <script
@@ -70,13 +70,13 @@
 
 		<div class="sidebar">
 			<center>
-				<img src="img/prota.jpg" class="profile_image" alt="">
+				<img th:src="@{img/prota.jpg}" class="profile_image" alt="">
 				<h4>Velapp</h4>
 			</center>
 
 
-			<a href="Carteradefacturas.html""><i class="fas fa-desktop"></i><span>Mis carteras</span></a>
-			<a href="login.html"><i class="fas fa-cogs"></i><span>Log out</span></a>
+			<a th:href="@{'/listacartera'}"><i class="fas fa-desktop"></i><span>Mis carteras</span></a>
+			<a th:href="@{'/inicio'}"><i class="fas fa-cogs"></i><span>Log out</span></a>
 			
 		</div>
 		
@@ -91,7 +91,7 @@
 						<h3>Mis Carteras</h3>
 					</div>
 					<div class="mc_boton">
-						<a class="btn btn-primary" href="Datos_cartera.html" role="button" style="background-color: #B0986F;">Nuevo</a>
+						<a class="btn btn-primary" th:href="@{/crearcartera}" role="button" style="background-color: #B0986F;">Nuevo</a>
 					</div>
 
 				</div>
@@ -111,7 +111,7 @@
 						<h4>Tipo de tasa :</h4>
 						<h4>Plazo de tasa :</h4>
                         <p class="card-text"></p>
-                        <a href="Carteradefacturas.html" class="fas fa-arrow-alt-circle-right fa-3x" id=ver></a>
+                        <a th:href="@{'cartera'}" class="fas fa-arrow-alt-circle-right fa-3x" id=ver></a>
                     </div>
                 </div>
             </div>
