@@ -25,17 +25,9 @@ public class RegisterServiceImpl implements RegisterService {
 		// TODO Auto-generated method stub
 		return null;
 	}
-	
-<<<<<<< Updated upstream
-	@Override
-	public List<Usuario> filterById_Usuario(Integer dni) throws Exception {
-		return registerRepository.filterById_Usuario(dni);
-	}
-=======
-	
-	
 
->>>>>>> Stashed changes
+
+
 	
 	
 	

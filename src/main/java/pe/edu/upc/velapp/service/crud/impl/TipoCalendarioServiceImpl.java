@@ -1,10 +1,13 @@
 package pe.edu.upc.velapp.service.crud.impl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
 
 import pe.edu.upc.velapp.entities.TipoCalendario;
+import pe.edu.upc.velapp.entities.Usuario;
 import pe.edu.upc.velapp.repository.TipoCalendarioRepository;
 import pe.edu.upc.velapp.service.crud.TipoCalendarioService;
 
@@ -17,6 +20,11 @@ public class TipoCalendarioServiceImpl implements TipoCalendarioService{
 	public JpaRepository<TipoCalendario, Integer> getRepository() {
 		// TODO Auto-generated method stub
 		return tipocalendarioRepository;
+	}
+	@Override
+	public List<Usuario> filterById_Usuario(Integer dni) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }
