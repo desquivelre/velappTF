@@ -25,5 +25,52 @@ public class Gasto {
 	
 	@ManyToOne
 	@JoinColumn(name = "CTipoGasto", nullable = false)
-	private TipoGasto TipoGasto; 
+	private TipoGasto TipoGasto;
+
+	public Gasto() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	public Gasto(Integer cGasto, Float mGasto, pe.edu.upc.velapp.entities.Cartera cartera,
+			pe.edu.upc.velapp.entities.TipoGasto tipoGasto) {
+		super();
+		CGasto = cGasto;
+		MGasto = mGasto;
+		Cartera = cartera;
+		TipoGasto = tipoGasto;
+	}
+
+	public Integer getCGasto() {
+		return CGasto;
+	}
+
+	public void setCGasto(Integer cGasto) {
+		CGasto = cGasto;
+	}
+
+	public Float getMGasto() {
+		return MGasto;
+	}
+
+	public void setMGasto(Float mGasto) {
+		MGasto = mGasto;
+	}
+
+	public Cartera getCartera() {
+		return Cartera;
+	}
+
+	public void setCartera(Cartera cartera) {
+		Cartera = cartera;
+	}
+
+	public TipoGasto getTipoGasto() {
+		return TipoGasto;
+	}
+
+	public void setTipoGasto(TipoGasto tipoGasto) {
+		TipoGasto = tipoGasto;
+	} 
+	
 }

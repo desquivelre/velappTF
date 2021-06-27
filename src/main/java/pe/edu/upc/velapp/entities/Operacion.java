@@ -30,5 +30,72 @@ public class Operacion {
 	
 	@ManyToOne
 	@JoinColumn(name = "CCartera", nullable = false)
-	private Cartera Cartera; 
+	private Cartera Cartera;
+
+	public Operacion() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	public Operacion(Integer cOperacion, Date dEmision, Date dPago, Float valorNominal, Float retencion,
+			pe.edu.upc.velapp.entities.Cartera cartera) {
+		super();
+		COperacion = cOperacion;
+		DEmision = dEmision;
+		DPago = dPago;
+		ValorNominal = valorNominal;
+		Retencion = retencion;
+		Cartera = cartera;
+	}
+
+	public Integer getCOperacion() {
+		return COperacion;
+	}
+
+	public void setCOperacion(Integer cOperacion) {
+		COperacion = cOperacion;
+	}
+
+	public Date getDEmision() {
+		return DEmision;
+	}
+
+	public void setDEmision(Date dEmision) {
+		DEmision = dEmision;
+	}
+
+	public Date getDPago() {
+		return DPago;
+	}
+
+	public void setDPago(Date dPago) {
+		DPago = dPago;
+	}
+
+	public Float getValorNominal() {
+		return ValorNominal;
+	}
+
+	public void setValorNominal(Float valorNominal) {
+		ValorNominal = valorNominal;
+	}
+
+	public Float getRetencion() {
+		return Retencion;
+	}
+
+	public void setRetencion(Float retencion) {
+		Retencion = retencion;
+	}
+
+	public Cartera getCartera() {
+		return Cartera;
+	}
+
+	public void setCartera(Cartera cartera) {
+		Cartera = cartera;
+	} 
+	
+	
+	
 }

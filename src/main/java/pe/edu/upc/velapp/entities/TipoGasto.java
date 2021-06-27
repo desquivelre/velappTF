@@ -21,5 +21,43 @@ public class TipoGasto {
 	
 	@OneToMany(mappedBy = "TipoGasto", fetch = FetchType.LAZY)
 	private List<Gasto> gastos;
+
+	public TipoGasto() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	public TipoGasto(Integer cTipoGasto, String nTipoGasto, List<Gasto> gastos) {
+		super();
+		CTipoGasto = cTipoGasto;
+		NTipoGasto = nTipoGasto;
+		this.gastos = gastos;
+	}
+
+	public Integer getCTipoGasto() {
+		return CTipoGasto;
+	}
+
+	public void setCTipoGasto(Integer cTipoGasto) {
+		CTipoGasto = cTipoGasto;
+	}
+
+	public String getNTipoGasto() {
+		return NTipoGasto;
+	}
+
+	public void setNTipoGasto(String nTipoGasto) {
+		NTipoGasto = nTipoGasto;
+	}
+
+	public List<Gasto> getGastos() {
+		return gastos;
+	}
+
+	public void setGastos(List<Gasto> gastos) {
+		this.gastos = gastos;
+	}
+	
+	
 	
 }
