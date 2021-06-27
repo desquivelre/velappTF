@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 @RequestMapping("/crearcartera")
-public class CrearCartera {
+public class CrearCarteraController {
 	@GetMapping
 	public String response() {
 		return "/Datos_cartera.html";

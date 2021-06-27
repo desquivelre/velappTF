@@ -64,6 +64,12 @@ public class Usuario {
 		Password = password;
 		this.carteras = carteras;
 	}
+
+	public Usuario() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+	
 	
 	
 }

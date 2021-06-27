@@ -67,13 +67,12 @@
 
 		<div class="content">
 			<h4>Iniciar sesión</h4>
+			
 			<input class="controls" type="text" name="nombres" id="nombres" placeholder="Ingrese su Usuario">
 			<input class="controls" type="password" name="correo" id="correo" placeholder="Ingrese su Contraseña">
-
-			<p>¿Es tu primera vez? <a th:href="@{ '/Register'}">Registrate aqui</a></p>
-			<a th:href="@{ '/Menu'}">
-
-
+			
+			<p>¿Es tu primera vez? <a th:href="@{'/Register'}">Registrate aqui</a></p>
+			<a th:href="@{'/Menu'}">
 				<input class="botons" type="submit" value="Entrar" >
 			</a>
 		</div>
