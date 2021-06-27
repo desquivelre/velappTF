@@ -15,10 +15,6 @@ public interface RegisterRepository extends JpaRepository<Usuario, Integer> {
 	Optional<Usuario>findByUsername(String username);
 	
 	
-<<<<<<< Updated upstream
-	@Query("SELECT c FROM Usuario c WHERE c.id= :dni")
-	List<Usuario>filterById_Usuario(@Param("dni")Integer dni);
-=======
->>>>>>> Stashed changes
+
 
 }
