@@ -52,10 +52,7 @@
 					id="navbarNavDropdown">
 					<ul class="navbar-nav ms-auto flex-nowrap"
 						style="margin-right: 400px;">
-						<li class="nav-item" style="margin-left: 30px;"><a
-							class="nav-link active" aria-current="page" th:href="@{'/inicio'}">Home</a></li>
 
-						
 							
 					
 					</ul>
@@ -76,8 +73,8 @@
 			</center>
 
 
-			<a href="appoimentList.html" ><i class="fas fa-desktop"></i><span>Mis Carteras</span></a>
-			<a href="#"><i class="fas fa-sliders-h"></i><span>Log out</span></a>
+			<a th:href="@{'/listacartera'}"><i class="fas fa-desktop"></i><span>Mis carteras</span></a>
+			<a th:href="@{'/inicio'}"><i class="fas fa-cogs"></i><span>Log out</span></a>
 		</div>
 		
 
