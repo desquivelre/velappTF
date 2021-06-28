@@ -26,29 +26,18 @@ public class RegisterServiceImpl implements RegisterService {
 	public JpaRepository<Usuario, Integer> getRepository() {
 		return registerRepository;
 	}
-<<<<<<< Updated upstream
-
-
 
 	@Override
 	public Usuario findByUsername(String username) {
 		// TODO Auto-generated method stub
 		return null;
 	}
-=======
->>>>>>> Stashed changes
-
-
 
 	@Override
 	public Usuario registrar(Usuario u) {
 		u.setPassword(passwordEncoder.encode(u.getPassword()));
 		return registerRepository.save(u);
 	}
-	
 
-
-	
-	
 	
 }

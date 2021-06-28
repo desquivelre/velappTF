@@ -22,15 +22,13 @@ public class OperacionServiceImpl implements OperacionService {
 		// TODO Auto-generated method stub
 		return operacionRepository;
 	}
-<<<<<<< Updated upstream
 
-=======
 	@Override
 	public List<Operacion> filterOperacionesByIdCartera(Integer id) throws Exception {
 		// TODO Auto-generated method stub
 		return operacionRepository.filterOperacionesByIdCartera(id);
 	}
->>>>>>> Stashed changes
+
 
 
 

@@ -21,9 +21,6 @@ public class TipoCalendarioServiceImpl implements TipoCalendarioService{
 		// TODO Auto-generated method stub
 		return tipocalendarioRepository;
 	}
-<<<<<<< Updated upstream
-=======
 
->>>>>>> Stashed changes
 
 }

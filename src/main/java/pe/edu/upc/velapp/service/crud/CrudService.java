@@ -39,11 +39,7 @@ public interface CrudService<T, ID> {
 		getRepository().deleteById(id);
 	}
 
-<<<<<<< Updated upstream
-=======
 
-
->>>>>>> Stashed changes
 	
 	
 }

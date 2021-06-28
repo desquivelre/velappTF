@@ -1,7 +1,9 @@
 package pe.edu.upc.velapp.entities;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -13,7 +15,7 @@ import javax.persistence.Table;
 @Table(name="Users")
 public class Usuario {
 	@Id 
-	@Column(name = "id", length = 4, nullable = false)
+	@Column(name = "id", length = 8, nullable = false)
 	private Integer id;
 	
 	@Column(name = "Username", length = 120)
@@ -22,26 +24,31 @@ public class Usuario {
 	@Column(name = "Password", length = 120)
 	private String password;
 	
-
-	public boolean enable;
-	
 	@OneToMany(mappedBy = "Usuario", fetch = FetchType.LAZY)
 	private List<Cartera> carteras;
 	
-	
-	
+
+	@OneToMany(mappedBy = "usuario",fetch=FetchType.EAGER,cascade=CascadeType.ALL)
+	private List<Authority>authorities;
+
+	private boolean enable;
 
 	public Usuario() {
 		super();
 		// TODO Auto-generated constructor stub
+		this.enable=true;
+		this.authorities= new ArrayList<>();
 	}
 
-	public Usuario(Integer id, String username, String password, List<Cartera> carteras) {
+	public Usuario(Integer cUsuario, String username, String password, List<Cartera> carteras,
+			List<Authority> authorities, boolean enable) {
 		super();
-		this.id = id;
+		this.id = cUsuario;
 		this.username = username;
 		this.password = password;
 		this.carteras = carteras;
+		this.enable=true;
+		this.authorities= new ArrayList<>();
 	}
 
 	public Integer getId() {
@@ -76,7 +83,22 @@ public class Usuario {
 		this.carteras = carteras;
 	}
 
-	
+	public List<Authority> getAuthorities() {
+		return authorities;
+	}
+
+	public void setAuthorities(List<Authority> authorities) {
+		this.authorities = authorities;
+	}
+
+	public boolean isEnable() {
+		return enable;
+	}
+
+	public void setEnable(boolean enable) {
+		this.enable = enable;
+	}
+
 	
 	
 }
