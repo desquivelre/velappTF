@@ -17,7 +17,7 @@
 	rel="stylesheet"
 	integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x"
 	crossorigin="anonymous">
-<link rel="stylesheet" th:href="@{css/Datos_style.css}">
+<link rel="stylesheet" th:href="@{/css/Datos_style.css}">
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css">
 <script
@@ -25,6 +25,8 @@
 	integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4"
 	crossorigin="anonymous"></script>
 </head>
+
+
 
 <body>
 	
@@ -38,7 +40,7 @@
 			<div class="container-fluid d-flex align-items-center">
 
 				   <img
-					src="img/logo.png" alt="" width="60" height="60"> <a
+					src="/img/logo.png" alt="" width="60" height="60"> <a
 					class="navbar-brand d-flex align-items-center"
 					style="margin-left: 20px;" href="#"> Velapp </a>
 
@@ -71,14 +73,13 @@
 
 		<div class="sidebar">
 			<center>
-				<img th:src="@{img/prota.jpg}" class="profile_image" alt="">
-				<h4>Vellap</h4>
+				<img th:src="@{/img/prota.jpg}" class="profile_image" alt="">
+				<h4 th:text="${usuario.username}">Vellap</h4>
 			</center>
 
 
-			 <a th:href="@{'/listacartera'}" ><i class="fas fa-desktop"></i><span>Mis Carteras</span></a>
+			 <a th:href="@{'/listacartera/' + ${usuario.id} }" ><i class="fas fa-desktop"></i><span>Mis Carteras</span></a>
    			 <a th:href="@{'/cartera'}" ><i class="fas fa-desktop"></i><span>Resumen de la cartera</span></a>
-   			 <a th:href="@{'/filtrado'}" ><i class="fas fa-desktop"></i><span>Filtrado de facturas</span></a>
    			 <a th:href="@{'/inicio'}"><i class="fas fa-sliders-h"></i><span>Log out</span></a>
 		</div>
 		
@@ -91,32 +92,56 @@
                         <h2>Cartera de facturas</h2>
                     </div>
                     <div class="datos_texto">
-                        <h5>Empieza con definir los datos de tu cartera</h5>
+                        <h5>Empieza definiendo los datos de tu cartera</h5>
                     </div>
                 </div>
 
                 <div class="datos_arriba_drecha">
-                    <a class="btn btn-primary" th:href="@{'/cartera'}" role="button">Confirmar</a>
+                    
                 </div>
             </div>
 
             <div class="datos_abajo">
+            
+            
+            
+            
                 <div class="datos_abajo_izquierda">
+                
+                <form th:action="@{/crearcartera/save-cartera}" th:object="${new_cartera}", method="post">
+                	
+                	<input type="text" class="form-control" th:field="*{CCartera}" hidden="true">
+                	<input type="text" class="form-control" th:field="*{Usuario}" hidden="true">
+                	
+              
+                	<div class="calendario">
+                		<div class="datos_texto">
+                            <h5>Tipo de calendario</h5>
+                        </div>
+                        <div class="dd_calendario">
+                                <select th:field="*{TipoCalendario}" class="form-select" aria-label="Default select example">
+                                
+								 	<option th:each ="calendario :${calendarios}"
+								 			th:value="${calendario.CTipoCalendario}"
+								 			th:text="${calendario.TipoCalendario}">Efectiva</option>
+
+								</select>
+                            </div>
+                		
+                	</div>
                     <div class="moneda">
                         <div class="datos_texto">
                             <h5>Tipo de moneda</h5>
                         </div>
 
                         <div class="dd_moneda">
-                            <div class="dropdown">
-                                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                                  S/.
-                                </button>
-                                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                                  <li><a class="dropdown-item" href="#">Soles S/.</a></li>
-                                  <li><a class="dropdown-item" href="#">Dólares $</a></li>
-                                </ul>
-                            </div>
+                            <select th:field="*{TipoMoneda}" class="form-select" aria-label="Default select example">
+                                
+								 	<option th:each ="moneda :${monedas}"
+								 			th:value="${moneda.CTipoMoneda}"
+								 			th:text="${moneda.NTipoMoneda}">Efectiva</option>
+
+								</select>
                         </div>
                     </div>
                     <div class="subtitulo">
@@ -129,27 +154,31 @@
                                 <h5>Tipo de tasa</h5>
                             </div>
                             <div class="cb_tasa">
-                                <div class="cb_tasa_efectiva">
-                                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
-                                    <label class="form-check-label" for="flexRadioDefault1">
-                                      Efectiva
-                                    </label>
-                                </div>
-                                <div class="cb_tasa_nominal">
-                                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
-                                    <label class="form-check-label" for="flexRadioDefault1">
-                                      Nominal
-                                    </label>
-                                </div>
+                                <select th:field="*{Tasa}" class="form-select" aria-label="Default select example" id="tipo_tasa">
+                                
+								 	<option th:each ="tasa :${tasas}"
+								 			th:value="${tasa.CTasa}"
+								 			th:text="${tasa.NTasa}">Efectiva</option>
+
+								</select>
                             </div>
                         </div>
     
                         <div class="valor">
                             <div class="datos_texto">
-                                <h5>Valor de la Tasa (%)</h5>
+                                <h5>Valor de la Tasa (%) efectiva</h5>
                             </div>
                             <div class="in_tasa">
-                                <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="">
+                                <input type="text" class="form-control" th:field="*{PerTasaEfectiva}">
+                            </div>
+                        </div>
+                        
+                        <div class="valor_nom">
+                            <div class="datos_texto">
+                                <h5>Valor de la Tasa (%) nominal</h5>
+                            </div>
+                            <div class="in_tasa">
+                                <input type="text" class="form-control" th:field="*{PerTasaNominal}">
                             </div>
                         </div>
     
@@ -158,19 +187,19 @@
                                 <h5>Plazo de la tasa</h5>
                             </div>
                             <div class="dd_tasa">
-                                <div class="dropdown">
-                                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                                      Anual
-                                    </button>
-                                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                                      <li><a class="dropdown-item" href="#">Anual</a></li>
-                                      <li><a class="dropdown-item" href="#">Semestral</a></li>
-                                      <li><a class="dropdown-item" href="#">Cuatrimestral</a></li>
-                                      <li><a class="dropdown-item" href="#">Trimestral</a></li>
-                                      <li><a class="dropdown-item" href="#">Bimestral</a></li>
-                                      <li><a class="dropdown-item" href="#">Mensual</a></li>
-                                    </ul>
-                                </div>
+                            
+                                <select th:field="*{NumDiasTasa}" class="form-select" aria-label="Default select example">
+								 	<option value="360">Anual</option>
+								 	<option value="180">Semestreal</option>
+								 	<option value="120">Cuatrimestral</option>
+								 	<option value="90">Trimestral</option>
+								 	<option value="60">Bimestral</option>
+									<option value="30">Mensual</option>
+									<option value="15">Quincenal</option>
+									<option value="7">Semanal</option>
+									<option value="1">Diario</option>
+								</select>
+								
                             </div>
                         </div>
     
@@ -179,22 +208,19 @@
                                 <h5>Periodo de capitalización</h5>
                             </div>
                             <div class="dd_periodo">
-                                <div class="dropdown">
-                                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                                      Anual
-                                    </button>
-                                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                                      <li><a class="dropdown-item" href="#">Anual</a></li>
-                                      <li><a class="dropdown-item" href="#">Semestral</a></li>
-                                      <li><a class="dropdown-item" href="#">Cuatrimestral</a></li>
-                                      <li><a class="dropdown-item" href="#">Trimestral</a></li>
-                                      <li><a class="dropdown-item" href="#">Bimestral</a></li>
-                                      <li><a class="dropdown-item" href="#">Mensual</a></li>
-                                      <li><a class="dropdown-item" href="#">Quincenal</a></li>
-                                      <li><a class="dropdown-item" href="#">Semanal</a></li>
-                                      <li><a class="dropdown-item" href="#">Diario</a></li>
-                                    </ul>
-                                </div>
+                            
+                                <select th:field="*{NumDiasPeriodoCapitalizacion}" class="form-select" aria-label="Default select example">
+								 	<option value="1">Anual</option>
+								 	<option value="2">Semestreal</option>
+								 	<option value="3">Cuatrimestral</option>
+								 	<option value="4">Trimestral</option>
+								 	<option value="5">Bimestral</option>
+									<option value="6">Mensual</option>
+									<option value="7">Quincenal</option>
+									<option value="8">Semanal</option>
+									<option value="9">Diario</option>
+								</select>
+								
                             </div>
                         </div>
     
@@ -204,97 +230,19 @@
                                 <h5>(dd/mm/aa)</h5>
                             </div>
                             <div class="in_fecha">
-                                <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="02/06/2021">
+                                <input type="datetime" class="form-control" id="exampleFormControlInput1" placeholder="2021/06/30 24:00:00" th:field="*{DDescuento}">
                             </div>
                         </div>
-    
+    					<div class="derecha_boton">
+    						<button type="submit" class="btn btn-primary">Crear</button>  
+    					</div>
                         
                     </div>
                     
+                    </form>
                 </div>
 
-                <div class="datos_abajo_derecha">
-                    <div class="gastos_iniciales">
-                        <div clas="subtitulo">
-                            <h4>Gastos iniciales</h4>
-                        </div>
-                        <div class="datos_marco">
-                            
-                            <div class="tipo_gasto">
-                                <div class="datos_texto">
-                                    <h5>Tipo de gasto</h5>
-                                </div>
-                                <div class="dd_g">
-                                    <div class="dropdown">
-                                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                                          Gasto notarial
-                                        </button>
-                                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                                          <li><a class="dropdown-item" href="#">Gasto notarial</a></li>
-                                          <li><a class="dropdown-item" href="#">Gasto fiscal ?</a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="monto_gasto">
-                                <div class="datos_texto">
-                                    <h5>Monto del gasto</h5>
-                                </div>
-                                <div class="in_monto">
-                                    <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="">
-                                </div>
-                            </div>
-                            
-                        </div>
-                        <div class="datos_botones">
-                            <a class="btn btn-primary" href="#" role="button">Agregar</a>
-                            <a class="btn btn-primary" href="#" role="button">Eliminar</a>
-                        </div>
-                        <div class="gasto_texto">
-                            <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="">
-                        </div>
-                    </div>
 
-                    <div class="gasto_finales">
-                        <div clas="subtitulo">
-                            <h4>Gastos finales</h4>
-                        </div>
-                        <div class="datos_marco">
-                            <div class="tipo_gasto">
-                                <div class="datos_texto">
-                                    <h5>Tipo de gasto</h5>
-                                </div>
-                                <div class="dd_g">
-                                    <div class="dropdown">
-                                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                                          Gasto notarial
-                                        </button>
-                                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                                          <li><a class="dropdown-item" href="#">Gasto notarial</a></li>
-                                          <li><a class="dropdown-item" href="#">Gasto fiscal ?</a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="monto_gasto">
-                                <div class="datos_texto">
-                                    <h5>Monto del gasto</h5>
-                                </div>
-                                <div class="in_monto">
-                                    <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="datos_botones">
-                            <a class="btn btn-primary" href="#" role="button">Agregar</a>
-                            <a class="btn btn-primary" href="#" role="button">Eliminar</a>
-                        </div>
-                        <div class="gasto_texto">
-                            <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="">
-                        </div>
-                    </div>
-
-                </div>
             </div>
 			
 		</div>

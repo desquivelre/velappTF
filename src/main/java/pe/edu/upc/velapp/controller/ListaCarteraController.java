@@ -34,9 +34,14 @@ public class ListaCarteraController {
 			Optional<Usuario> usuario = registerService.findById(id);
 			if(usuario.isPresent()) {
 				
+<<<<<<< Updated upstream
 				List<Cartera> carteras  = carteraService.filterCarterasByIdUsuario(usuario.get().getId());
 				model.addAttribute("usuario", usuario.get());
 				model.addAttribute("carteras", carteras);
+=======
+				
+				model.addAttribute("usuario", usuario.get());
+>>>>>>> Stashed changes
 				
 			}
 		} catch (Exception e) {

@@ -11,6 +11,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @Entity
 @Table(name="Cartera")
@@ -31,7 +33,7 @@ public class Cartera {
 	@Column(name = "NumDiasPeriodoCapitalizacion", length = 20, nullable = true)
 	private Integer NumDiasPeriodoCapitalizacion;
 	
-	@Column(name = "DDescuento")
+	@Column(name = "DDescuento", nullable = false)
 	private Date DDescuento;
 	
 	@Column(name = "GastoFinalTotal", length = 20, nullable = true)
@@ -69,10 +71,16 @@ public class Cartera {
 	}
 
 	public Cartera(Integer cCartera, Float perTasaEfectiva, Float perTasaNominal, Integer numDiasTasa,
+<<<<<<< Updated upstream
 			Integer numDiasPeriodoCapitalizacion, Date dDescuento, Float gastoFinalTotal, Float gastoInicialTotal,
 			pe.edu.upc.velapp.entities.Usuario usuario, pe.edu.upc.velapp.entities.TipoCalendario tipoCalendario,
 			pe.edu.upc.velapp.entities.Tasa tasa, pe.edu.upc.velapp.entities.TipoMoneda tipoMoneda,
 			List<Operacion> operaciones, List<Gasto> gastos) {
+=======
+			Integer numDiasPeriodoCapitalizacion, Date dDescuento, pe.edu.upc.velapp.entities.Usuario usuario,
+			pe.edu.upc.velapp.entities.TipoCalendario tipoCalendario, pe.edu.upc.velapp.entities.Tasa tasa,
+			pe.edu.upc.velapp.entities.TipoMoneda tipoMoneda, List<Operacion> operaciones, List<Gasto> gastos) {
+>>>>>>> Stashed changes
 		super();
 		CCartera = cCartera;
 		PerTasaEfectiva = perTasaEfectiva;

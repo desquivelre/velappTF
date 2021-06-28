@@ -208,6 +208,9 @@ label #sidebar_btn:hover{
   display: flex;
   flex-direction: column;
   border-radius: 10px;
+  width: 50%;
+  
+
 }
 .datos_arriba{
   display: flex;
@@ -333,10 +336,18 @@ label #sidebar_btn:hover{
   border-color: #B0986F;
 }
 
-.dd_tasa{
-	margin-right: 20px;
+.tipo_gasto{
+	padding-top: 15px;
+	padding-left: 20px;
+	display: flex;
+	flex-direction: row;
 }
 
-.dd_periodo{
-	margin-right: 20px;
+.monto_gasto{
+	padding-top: 15px;
+	padding-left: 20px;
+	display: flex;
+	flex-direction: row;
+	padding-bottom: 15px;
+	padding-right: 15px;
 }
