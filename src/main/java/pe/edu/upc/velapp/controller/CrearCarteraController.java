@@ -70,6 +70,8 @@ public class CrearCarteraController {
 			Optional<Usuario> usuario = registerService.findById(id);
 			
 			cartera.setUsuario(usuario.get());
+			cartera.setGastoInicialTotal((float)0.0);
+			cartera.setGastoFinalTotal((float)0.0);
 			
 			if(usuario.isPresent()) {
 						
@@ -171,6 +173,8 @@ public class CrearCarteraController {
 	public String saveGastoInicial(@ModelAttribute("new_gasto_inicial") Gasto gasto_inicial) {
 		
 		try {
+			Optional<Cartera> cartera = carteraService.findById(gasto_inicial.getCartera().getCCartera());
+			cartera.get().setGastoInicialTotal(cartera.get().getGastoInicialTotal()+gasto_inicial.getMGasto());
 			Gasto gastoReturn = gastoService.create(gasto_inicial);
 		} catch (Exception e) {
 			// TODO: handle exception
@@ -220,6 +224,8 @@ public class CrearCarteraController {
 	public String saveGastoFinal(@ModelAttribute("new_gasto_final") Gasto gasto_final) {
 		
 		try {
+			Optional<Cartera> cartera = carteraService.findById(gasto_final.getCartera().getCCartera());
+			cartera.get().setGastoFinalTotal(cartera.get().getGastoFinalTotal()+gasto_final.getMGasto());
 			Gasto gastoReturn = gastoService.create(gasto_final);
 		} catch (Exception e) {
 			// TODO: handle exception

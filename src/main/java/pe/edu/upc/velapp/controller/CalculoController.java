@@ -1,6 +1,8 @@
 package pe.edu.upc.velapp.controller;
 
 import java.util.Date;
+
+import org.apache.commons.math3.util.Precision;
 import org.springframework.stereotype.Controller;
 
 
@@ -24,7 +26,10 @@ public class CalculoController {
 		double TEcantidaddias=(Math.pow(1+TEA,CantidadDias/360))-1;
 		double dperc = TEcantidaddias/(TEcantidaddias+1);
 		
-		double Descuento = Math.round(ValorNominal*dperc) ;
+		double Descuento = ValorNominal*dperc;
+		
+		double scale = Math.pow(10, 2);
+		Descuento=Math.round(Descuento * scale) / scale;
 	
 	    return Descuento;
 	  }
@@ -44,6 +49,9 @@ public class CalculoController {
 		double Descuento = ValorNominal*dperc;
 		
 		double ValorNeto = Math.round(ValorNominal - Descuento);
+		
+		double scale = Math.pow(10, 2);
+		ValorNeto=Math.round(ValorNeto * scale) / scale;
 	
 	    return ValorNeto;
 	  }
@@ -64,7 +72,10 @@ public class CalculoController {
 		
 		double ValorNeto = ValorNominal - Descuento;
 		
-		double ValorEntregado = Math.round(ValorNeto+GastoFinalTotal-Retencion);
+		double ValorEntregado = ValorNeto+GastoFinalTotal-Retencion;
+		
+		double scale = Math.pow(10, 2);
+		ValorEntregado=Math.round(ValorEntregado * scale) / scale;
 		
 	    return ValorEntregado;
 	  }
@@ -90,8 +101,10 @@ public class CalculoController {
 		
 		double ValorEntregado = ValorNeto+GastoFinalTotal-Retencion;
 		
-		double ValorRecibido = Math.round(ValorNeto-GastoInicialTotal-Retencion);
+		double ValorRecibido = ValorNeto-GastoInicialTotal-Retencion;
 		
+		double scale = Math.pow(10, 2);
+		ValorRecibido=Math.round(ValorRecibido * scale) / scale;
 		
 	    return ValorRecibido;
 	  }
@@ -118,6 +131,9 @@ public class CalculoController {
 		
 		double TCEA = Math.pow(ValorEntregado/ValorRecibido,360/CantidadDias)-1;
 		
+		double scale = Math.pow(10, 7);
+		TCEA=Math.round(TCEA * scale) / scale;
+		
 	    return TCEA;
 	  }
 	
@@ -134,8 +150,11 @@ public class CalculoController {
 		
 		double dperc = TEcantidaddias/(TEcantidaddias+1);
 		
-		double Descuento = Math.round(ValorNominal*dperc) ;
+		double Descuento = ValorNominal*dperc;
 	
+		double scale = Math.pow(10, 2);
+		Descuento=Math.round(Descuento * scale) / scale;
+		
 	    return Descuento;
 	  }
 	
@@ -153,7 +172,10 @@ public class CalculoController {
 		
 		double Descuento = ValorNominal*dperc;
 	
-		double ValorNeto = Math.round(ValorNominal - Descuento);
+		double ValorNeto = ValorNominal - Descuento;
+		
+		double scale = Math.pow(10, 2);
+		ValorNeto=Math.round(ValorNeto * scale) / scale;
 		
 	    return ValorNeto;
 	  }
@@ -173,9 +195,13 @@ public class CalculoController {
 	
 		double ValorNeto = ValorNominal - Descuento;
 		
-		double ValorEntregado = Math.round(ValorNeto+GastoFinalTotal-Retencion);
+		double ValorEntregado = ValorNeto+GastoFinalTotal-Retencion;
+		
+		double scale = Math.pow(10, 2);
+		ValorEntregado=Math.round(ValorEntregado * scale) / scale;
 		
 	    return ValorEntregado;
+		
 	  }
 	
 	
@@ -197,7 +223,10 @@ public class CalculoController {
 		
 		double ValorEntregado = ValorNeto+GastoFinalTotal-Retencion;
 		
-		double ValorRecibido = Math.round(ValorNeto-GastoInicialTotal-Retencion);
+		double ValorRecibido = ValorNeto-GastoInicialTotal-Retencion;
+		
+		double scale = Math.pow(10, 2);
+		ValorRecibido=Math.round(ValorRecibido * scale) / scale;
 		
 	    return ValorRecibido;
 	  }
@@ -222,6 +251,9 @@ public class CalculoController {
 		double ValorRecibido = ValorNeto-GastoInicialTotal-Retencion;
 		
 		double TCEA = Math.pow(ValorEntregado/ValorRecibido,360/CantidadDias)-1;
+		
+		double scale = Math.pow(10, 7);
+		TCEA=Math.round(TCEA * scale) / scale;
 		
 	    return TCEA;
 	  }

@@ -79,7 +79,6 @@
 
 
 			 <a th:href="@{'/listacartera/' + ${usuario.id} }" ><i class="fas fa-desktop"></i><span>Mis Carteras</span></a>
-   			 <a th:href="@{'/cartera'}" ><i class="fas fa-desktop"></i><span>Resumen de la cartera</span></a>
    			 <a th:href="@{'/inicio'}"><i class="fas fa-sliders-h"></i><span>Log out</span></a>
 		</div>
 		
@@ -112,7 +111,8 @@
                 	
                 	<input type="text" class="form-control" th:field="*{CCartera}" hidden="true">
                 	<input type="text" class="form-control" th:field="*{Usuario}" hidden="true">
-                	
+                	<input type="text" class="form-control" th:field="*{GastoFinalTotal}" hidden="true">
+                    <input type="text" class="form-control" th:field="*{GastoInicialTotal}" hidden="true">
               
                 	<div class="calendario">
                 		<div class="datos_texto">

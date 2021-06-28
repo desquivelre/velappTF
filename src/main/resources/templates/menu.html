@@ -71,10 +71,7 @@ xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 			<center>
 
 				<img th:src="@{img/prota.jpg}" class="profile_image" alt="">
-				<h4 > [[${#request.userPrincipal.principal.getID}]]</h4>
-
-				<img th:src="@{/img/prota.jpg}" class="profile_image" alt="">
-				<h4>VellApp</h4>
+				<h4><span sec:authentication="name">Username</span></h4>
 
 			</center>
 

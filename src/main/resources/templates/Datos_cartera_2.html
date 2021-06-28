@@ -78,9 +78,7 @@
 			</center>
 
 
-			 <a th:href="@{'/listacartera'}" ><i class="fas fa-desktop"></i><span>Mis Carteras</span></a>
-   			 <a th:href="@{'/cartera'}" ><i class="fas fa-desktop"></i><span>Resumen de la cartera</span></a>
-   			 <a th:href="@{'/filtrado'}" ><i class="fas fa-desktop"></i><span>Filtrado de facturas</span></a>
+			 <a th:href="@{'/listacartera/'+${usuario.id}}" ><i class="fas fa-desktop"></i><span>Mis Carteras</span></a>
    			 <a th:href="@{'/inicio'}"><i class="fas fa-sliders-h"></i><span>Log out</span></a>
 		</div>
 		
@@ -105,7 +103,7 @@
 				<div class="abajo">
 					<a class="btn btn-primary" th:href="@{'/crearcartera/gastos_iniciales/' + ${cartera.CCartera}}" role="button">Agregar Gasto Inicial</a>
 					<a class="btn btn-primary" th:href="@{'/crearcartera/gastos_finales/' + ${cartera.CCartera}}" role="button">Agregar Gasto Final</a>
-					<a class="btn btn-primary" href="#" role="button">Confirmar</a>
+					<a class="btn btn-primary" th:href="@{'/listacartera/'+${usuario.id}}" role="button">Confirmar</a>
 				</div>
 			</div>
 			

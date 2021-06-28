@@ -76,8 +76,7 @@
     </center>
 
 
-    <a th:href="@{'/listacartera/' + ${usuario.id} }" ><i class="fas fa-desktop"></i><span>Mis Carteras</span></a>
-   	<a th:href="@{'/cartera'}" ><i class="fas fa-desktop"></i><span>Resumen de la cartera</span></a>
+    <a th:href="@{'/listacartera/'}" ><i class="fas fa-desktop"></i><span>Mis Carteras</span></a>
    	<a th:href="@{'/inicio'}"><i class="fas fa-sliders-h"></i><span>Log out</span></a>
 </div>
 
@@ -119,16 +118,13 @@
                     
                     <div class="dd_g">
                         <div class="dropdown">
-                            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                                Portes
-                            </button>
-                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                                <li><a class="dropdown-item" href="#">Portes</a></li>
-                                <li><a class="dropdown-item" href="#">Gastos de administracion</a></li>
-                                <li><a class="dropdown-item" href="#">Gastos notariales</a></li>
-                                <li><a class="dropdown-item" href="#">Seguro</a></li>
-                                <li><a class="dropdown-item" href="#">Otros gastos</a></li>
-                            </ul>
+                            <select class="form-select" aria-label="Default select example">
+								 	<option value="1">Portes</option>
+								 	<option value="2">Gastos de administracion</option>
+								 	<option value="3">Gastos notariales</option>
+								 	<option value="4">Seguro</option>
+								 	<option value="5">Otros gastos</option>
+							</select>
                         </div>
                     </div>
                 </div>

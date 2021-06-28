@@ -59,7 +59,7 @@
 					
 					</ul>
 					<label for="check"> 
-								<i class="fas fa-user-circle fa-2x" id="sidebar_btn"></i>
+						<i class="fas fa-user-circle fa-2x" id="sidebar_btn"></i>
 					</label>
 				</div>
 			</div>
@@ -75,7 +75,7 @@
 			</center>
 
 
-			<a th:href="@{'/listacartera/'+${usuario}}"><i class="fas fa-desktop"></i><span>Mis carteras</span></a>
+			<a th:href="@{'/listacartera/'+${usuario.id}}"><i class="fas fa-desktop"></i><span>Mis carteras</span></a>
 			<a th:href="@{'/inicio'}"><i class="fas fa-cogs"></i><span>Log out</span></a>
 			
 		</div>
@@ -91,7 +91,7 @@
 						<h3>Mis Carteras</h3>
 					</div>
 					<div class="mc_boton">
-						<a class="btn btn-primary" th:href="@{/crearcartera}" role="button" style="background-color: #B0986F;">Nuevo</a>
+						<a class="btn btn-primary" th:href="@{'/crearcartera/'+${usuario.id}}" role="button" style="background-color: #B0986F;">Nuevo</a>
 					</div>
 
 				</div>

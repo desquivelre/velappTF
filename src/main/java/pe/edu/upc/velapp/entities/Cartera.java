@@ -71,16 +71,10 @@ public class Cartera {
 	}
 
 	public Cartera(Integer cCartera, Float perTasaEfectiva, Float perTasaNominal, Integer numDiasTasa,
-<<<<<<< Updated upstream
 			Integer numDiasPeriodoCapitalizacion, Date dDescuento, Float gastoFinalTotal, Float gastoInicialTotal,
 			pe.edu.upc.velapp.entities.Usuario usuario, pe.edu.upc.velapp.entities.TipoCalendario tipoCalendario,
 			pe.edu.upc.velapp.entities.Tasa tasa, pe.edu.upc.velapp.entities.TipoMoneda tipoMoneda,
 			List<Operacion> operaciones, List<Gasto> gastos) {
-=======
-			Integer numDiasPeriodoCapitalizacion, Date dDescuento, pe.edu.upc.velapp.entities.Usuario usuario,
-			pe.edu.upc.velapp.entities.TipoCalendario tipoCalendario, pe.edu.upc.velapp.entities.Tasa tasa,
-			pe.edu.upc.velapp.entities.TipoMoneda tipoMoneda, List<Operacion> operaciones, List<Gasto> gastos) {
->>>>>>> Stashed changes
 		super();
 		CCartera = cCartera;
 		PerTasaEfectiva = perTasaEfectiva;
@@ -210,6 +204,7 @@ public class Cartera {
 		this.gastos = gastos;
 	}
 
+	
 	
 
 	
