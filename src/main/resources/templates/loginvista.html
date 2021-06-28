@@ -42,7 +42,6 @@ xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 					class="navbar-brand d-flex align-items-center"
 					style="margin-left: 20px;" href="#"> VellApp </a>
 
-
 				<button class="navbar-toggler" type="button"
 					data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
 					aria-controls="navbarNavDropdown" aria-expanded="false"
@@ -71,7 +70,7 @@ xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 			<input class="controls"  th:field ="*{id}" type="text" name="id" id="id" placeholder="Ingrese su dni">
 			<input class="controls" th:field ="*{username}"  type="text" name="Username" id="Username" placeholder="Ingrese su Usuario">
 			<input class="controls"  th:field ="*{password}" type="password" name="password" id="password" placeholder="Ingrese su Contraseña">
-			<p>¿Ya tienes cuenta? <a href="#">Inicia Sesión</a></p>
+			<p>¿Ya tienes cuenta? <a th:href="@{'/login'}">Inicia Sesión</a></p>
 			<a >
 
 				

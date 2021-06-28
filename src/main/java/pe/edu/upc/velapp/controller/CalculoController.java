@@ -2,7 +2,7 @@ package pe.edu.upc.velapp.controller;
 
 import java.util.Date;
 
-import org.apache.commons.math3.util.Precision;
+
 import org.springframework.stereotype.Controller;
 
 
@@ -16,15 +16,16 @@ public class CalculoController {
 	
 	public static double DescuentoParaTasaNominal(Float perTasaNominalConPorcentaje, int NumDiasTasa, int NumDiasPeriodoCapitalizacion, Date DPago, Date DDescuento, float ValorNominal, float GastoInicialTotal, float GastoFinalTotal){
 		
-		double perTasaNominal=perTasaNominalConPorcentaje/100;
+		double perTasaNominal=(double)perTasaNominalConPorcentaje/(double)100;
 		
 		long CantidadDiasLong = (long)(DDescuento.getTime()/86400000)-(long)(DPago.getTime()/86400000);
-		float CantidadDias=(float)CantidadDiasLong;
+		double CantidadDias=(double)CantidadDiasLong;
+		CantidadDias=Math.abs(CantidadDias);
 		
-		double TEA = Math.pow(1+(perTasaNominal)/(NumDiasTasa/NumDiasPeriodoCapitalizacion),CantidadDias/NumDiasPeriodoCapitalizacion)-1;
+		double TEA = Math.pow(1+(perTasaNominal)/(double)(NumDiasTasa/NumDiasPeriodoCapitalizacion),CantidadDias/(double)NumDiasPeriodoCapitalizacion)-1;
 		
-		double TEcantidaddias=(Math.pow(1+TEA,CantidadDias/360))-1;
-		double dperc = TEcantidaddias/(TEcantidaddias+1);
+	
+		double dperc = TEA/(TEA+1);
 		
 		double Descuento = ValorNominal*dperc;
 		
@@ -39,16 +40,17 @@ public class CalculoController {
 		double perTasaNominal=perTasaNominalConPorcentaje/100;
 		
 		long CantidadDiasLong = (long)(DDescuento.getTime()/86400000)-(long)(DPago.getTime()/86400000);
-		float CantidadDias=(float)CantidadDiasLong;
+		double CantidadDias=(double)CantidadDiasLong;
+		CantidadDias=Math.abs(CantidadDias);
 		
 		double TEA = Math.pow(1+(perTasaNominal)/(NumDiasTasa/NumDiasPeriodoCapitalizacion),CantidadDias/NumDiasPeriodoCapitalizacion)-1;
 		
-		double TEcantidaddias=(Math.pow(1+TEA,CantidadDias/360))-1;
-		double dperc = TEcantidaddias/(TEcantidaddias+1);
+		
+		double dperc = TEA/(TEA+1);
 		
 		double Descuento = ValorNominal*dperc;
 		
-		double ValorNeto = Math.round(ValorNominal - Descuento);
+		double ValorNeto = ValorNominal - Descuento;
 		
 		double scale = Math.pow(10, 2);
 		ValorNeto=Math.round(ValorNeto * scale) / scale;
@@ -61,18 +63,19 @@ public class CalculoController {
 		double perTasaNominal=perTasaNominalConPorcentaje/100;
 		
 		long CantidadDiasLong = (long)(DDescuento.getTime()/86400000)-(long)(DPago.getTime()/86400000);
-		float CantidadDias=(float)CantidadDiasLong;
+		double CantidadDias=(double)CantidadDiasLong;
+		CantidadDias=Math.abs(CantidadDias);
 		
 		double TEA = Math.pow(1+(perTasaNominal)/(NumDiasTasa/NumDiasPeriodoCapitalizacion),CantidadDias/NumDiasPeriodoCapitalizacion)-1;
 		
-		double TEcantidaddias=(Math.pow(1+TEA,CantidadDias/360))-1;
-		double dperc = TEcantidaddias/(TEcantidaddias+1);
+
+		double dperc = TEA/(TEA+1);
 		
 		double Descuento = ValorNominal*dperc;
 		
 		double ValorNeto = ValorNominal - Descuento;
 		
-		double ValorEntregado = ValorNeto+GastoFinalTotal-Retencion;
+		double ValorEntregado = ValorNominal+(double)GastoFinalTotal-(double)Retencion;
 		
 		double scale = Math.pow(10, 2);
 		ValorEntregado=Math.round(ValorEntregado * scale) / scale;
@@ -84,54 +87,55 @@ public class CalculoController {
 	public static double ValorRecibidoParaTasaNominal(Float perTasaNominalConPorcentaje, int NumDiasTasa, int NumDiasPeriodoCapitalizacion, Date DPago, Date DDescuento, float ValorNominal, float GastoInicialTotal, float GastoFinalTotal, float Retencion){
 		
 		
-		
-		double perTasaNominal=perTasaNominalConPorcentaje/100;
+double perTasaNominal=perTasaNominalConPorcentaje/100;
 		
 		long CantidadDiasLong = (long)(DDescuento.getTime()/86400000)-(long)(DPago.getTime()/86400000);
-		float CantidadDias=(float)CantidadDiasLong;
+		double CantidadDias=(double)CantidadDiasLong;
+		CantidadDias=Math.abs(CantidadDias);
 		
 		double TEA = Math.pow(1+(perTasaNominal)/(NumDiasTasa/NumDiasPeriodoCapitalizacion),CantidadDias/NumDiasPeriodoCapitalizacion)-1;
 		
-		double TEcantidaddias=(Math.pow(1+TEA,CantidadDias/360))-1;
-		double dperc = TEcantidaddias/(TEcantidaddias+1);
+
+		double dperc = (double)TEA/((double)TEA+(double)1);
 		
-		double Descuento = ValorNominal*dperc;
+		double Descuento = (double)ValorNominal*(double)dperc;
 		
-		double ValorNeto = ValorNominal - Descuento;
+		double ValorNeto = (double)ValorNominal - (double)Descuento;
 		
-		double ValorEntregado = ValorNeto+GastoFinalTotal-Retencion;
+		double ValorEntregado = ValorNominal+(double)GastoFinalTotal-(double)Retencion;
 		
-		double ValorRecibido = ValorNeto-GastoInicialTotal-Retencion;
+		double ValorRecibido = (double)ValorNeto-(double)GastoInicialTotal-(double)Retencion;
 		
 		double scale = Math.pow(10, 2);
-		ValorRecibido=Math.round(ValorRecibido * scale) / scale;
+		ValorRecibido=Math.round(ValorRecibido * (double)scale) / scale;
 		
 	    return ValorRecibido;
 	  }
 	
 	public static double TCEAParaTasaNominal(Float perTasaNominalConPorcentaje, int NumDiasTasa, int NumDiasPeriodoCapitalizacion, Date DPago, Date DDescuento, float ValorNominal, float GastoInicialTotal, float GastoFinalTotal, float Retencion){
 		
-		double perTasaNominal=perTasaNominalConPorcentaje/100;
+double perTasaNominal=perTasaNominalConPorcentaje/100;
 		
 		long CantidadDiasLong = (long)(DDescuento.getTime()/86400000)-(long)(DPago.getTime()/86400000);
-		float CantidadDias=(float)CantidadDiasLong;
+		double CantidadDias=(double)CantidadDiasLong;
+		CantidadDias=Math.abs(CantidadDias);
 		
 		double TEA = Math.pow(1+(perTasaNominal)/(NumDiasTasa/NumDiasPeriodoCapitalizacion),CantidadDias/NumDiasPeriodoCapitalizacion)-1;
 		
-		double TEcantidaddias=(Math.pow(1+TEA,CantidadDias/360))-1;
-		double dperc = TEcantidaddias/(TEcantidaddias+1);
+
+		double dperc = TEA/(TEA+1);
 		
 		double Descuento = ValorNominal*dperc;
 		
 		double ValorNeto = ValorNominal - Descuento;
 		
-		double ValorEntregado = ValorNeto+GastoFinalTotal-Retencion;
+		double ValorEntregado = ValorNominal+(double)GastoFinalTotal-(double)Retencion;
 		
 		double ValorRecibido = ValorNeto-GastoInicialTotal-Retencion;
 		
 		double TCEA = Math.pow(ValorEntregado/ValorRecibido,360/CantidadDias)-1;
 		
-		double scale = Math.pow(10, 7);
+		double scale = Math.pow(10, 6);
 		TCEA=Math.round(TCEA * scale) / scale;
 		
 	    return TCEA;
@@ -141,10 +145,11 @@ public class CalculoController {
 	
 	public static double DescuentoParaTasaEfectiva(Float perTasaEfectivaConPorcentaje, int NumDiasTasa, Date DPago, Date DDescuento, float ValorNominal, float GastoInicialTotal, float GastoFinalTotal){
 		
-		double perTasaEfectiva=perTasaEfectivaConPorcentaje/100;
+		double perTasaEfectiva=(double)perTasaEfectivaConPorcentaje/(double)100;
 		
 		long CantidadDiasLong = (long)(DDescuento.getTime()/86400000)-(long)(DPago.getTime()/86400000);
-		float CantidadDias=(float)CantidadDiasLong;
+		double CantidadDias=(double)CantidadDiasLong;
+		CantidadDias=Math.abs(CantidadDias);
 		
 		double TEcantidaddias=(Math.pow(1+perTasaEfectiva,CantidadDias/NumDiasTasa))-1;
 		
@@ -164,7 +169,8 @@ public class CalculoController {
 		double perTasaEfectiva=perTasaEfectivaConPorcentaje/100;
 		
 		long CantidadDiasLong = (long)(DDescuento.getTime()/86400000)-(long)(DPago.getTime()/86400000);
-		float CantidadDias=(float)CantidadDiasLong;
+		double CantidadDias=(double)CantidadDiasLong;
+		CantidadDias=Math.abs(CantidadDias);
 		
 		double TEcantidaddias=(Math.pow(1+perTasaEfectiva,CantidadDias/NumDiasTasa))-1;
 		
@@ -185,7 +191,8 @@ public class CalculoController {
 		double perTasaEfectiva=perTasaEfectivaConPorcentaje/100;
 		
 		long CantidadDiasLong = (long)(DDescuento.getTime()/86400000)-(long)(DPago.getTime()/86400000);
-		float CantidadDias=(float)CantidadDiasLong;
+		double CantidadDias=(double)CantidadDiasLong;
+		CantidadDias=Math.abs(CantidadDias);
 		
 		double TEcantidaddias=(Math.pow(1+perTasaEfectiva,CantidadDias/NumDiasTasa))-1;
 		
@@ -195,7 +202,7 @@ public class CalculoController {
 	
 		double ValorNeto = ValorNominal - Descuento;
 		
-		double ValorEntregado = ValorNeto+GastoFinalTotal-Retencion;
+		double ValorEntregado = ValorNominal+(double)GastoFinalTotal-(double)Retencion;
 		
 		double scale = Math.pow(10, 2);
 		ValorEntregado=Math.round(ValorEntregado * scale) / scale;
@@ -211,7 +218,8 @@ public class CalculoController {
 		double perTasaEfectiva=perTasaEfectivaConPorcentaje/100;
 		
 		long CantidadDiasLong = (long)(DDescuento.getTime()/86400000)-(long)(DPago.getTime()/86400000);
-		float CantidadDias=(float)CantidadDiasLong;
+		double CantidadDias=(double)CantidadDiasLong;
+		CantidadDias=Math.abs(CantidadDias);
 		
 		double TEcantidaddias=(Math.pow(1+perTasaEfectiva,CantidadDias/NumDiasTasa))-1;
 		
@@ -221,7 +229,7 @@ public class CalculoController {
 	
 		double ValorNeto = ValorNominal - Descuento;
 		
-		double ValorEntregado = ValorNeto+GastoFinalTotal-Retencion;
+		double ValorEntregado = ValorNominal+(double)GastoFinalTotal-(double)Retencion;
 		
 		double ValorRecibido = ValorNeto-GastoInicialTotal-Retencion;
 		
@@ -236,7 +244,8 @@ public class CalculoController {
 		double perTasaEfectiva=perTasaEfectivaConPorcentaje/100;
 		
 		long CantidadDiasLong = (long)(DDescuento.getTime()/86400000)-(long)(DPago.getTime()/86400000);
-		float CantidadDias=(float)CantidadDiasLong;
+		double CantidadDias=(double)CantidadDiasLong;
+		CantidadDias=Math.abs(CantidadDias);
 		
 		double TEcantidaddias=(Math.pow(1+perTasaEfectiva,CantidadDias/NumDiasTasa))-1;
 		
@@ -246,7 +255,7 @@ public class CalculoController {
 	
 		double ValorNeto = ValorNominal - Descuento;
 		
-		double ValorEntregado = ValorNeto+GastoFinalTotal-Retencion;
+		double ValorEntregado = ValorNominal+(double)GastoFinalTotal-(double)Retencion;
 		
 		double ValorRecibido = ValorNeto-GastoInicialTotal-Retencion;
 		
