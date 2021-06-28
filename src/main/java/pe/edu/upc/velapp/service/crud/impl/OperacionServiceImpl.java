@@ -1,5 +1,6 @@
 package pe.edu.upc.velapp.service.crud.impl;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +22,17 @@ public class OperacionServiceImpl implements OperacionService {
 		// TODO Auto-generated method stub
 		return operacionRepository;
 	}
+<<<<<<< Updated upstream
+
+=======
+	@Override
+	public List<Operacion> filterOperacionesByIdCartera(Integer id) throws Exception {
+		// TODO Auto-generated method stub
+		return operacionRepository.filterOperacionesByIdCartera(id);
+	}
+>>>>>>> Stashed changes
+
+
 
 
 }

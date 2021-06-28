@@ -94,8 +94,10 @@ public class Operacion {
 
 	public void setCartera(Cartera cartera) {
 		Cartera = cartera;
-	} 
+	}
+
 	
+
 	
 	
 }

@@ -21,5 +21,9 @@ public class TipoMonedaServiceImpl implements TipoMonedaService {
 		// TODO Auto-generated method stub
 		return tipomonedaRepository;
 	}
+<<<<<<< Updated upstream
+=======
+
+>>>>>>> Stashed changes
 
 }

@@ -24,5 +24,13 @@ public class CarteraServiceImpl implements CarteraService {
 	}
 
 
+<<<<<<< Updated upstream
+=======
+	@Override
+	public List<Cartera> filterCarterasByIdUsuario(Integer id) throws Exception {
+		// TODO Auto-generated method stub
+		return carteraRepository.filterCarterasByIdUsuario(id);
+	}
+>>>>>>> Stashed changes
 
 }

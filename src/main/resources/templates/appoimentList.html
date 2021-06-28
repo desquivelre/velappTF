@@ -100,18 +100,18 @@
 	
 		 
       <div class="Cards">
-                <div th:each="usuarios: ${usuario}" class="card">
+                <div th:each="carteras: ${carteras}" class="card">
 			
                     <div class="card-header">
-						<h2>Numero de Cartera :</h2>
+						<h2 th:text="'Numero de Cartera : '+' '+${carteras.CCartera} "></h2>
                     </div>
                     <div class="card-body">
                         <h5 class="card-title"></h5>
-						<h4>Tipo de moneda :</h4>
-						<h4>Tipo de tasa :</h4>
-						<h4>Plazo de tasa :</h4>
+						<h4 th:text="'Tipo de moneda : '+' '+${carteras.TipoMoneda.NTipoMoneda} "></h4>
+						<h4 th:text="'Tipo de tasa : '+' '+${carteras.Tasa.NTasa} "></h4>
+
                         <p class="card-text"></p>
-                        <a th:href="@{'/cartera'}" class="fas fa-arrow-alt-circle-right fa-3x" id=ver></a>
+                        <a th:href="@{'/cartera/'+${carteras.CCartera}}" class="fas fa-arrow-alt-circle-right fa-3x" id=ver></a>
                     </div>
                 </div>
             </div>

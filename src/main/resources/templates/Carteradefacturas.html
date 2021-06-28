@@ -17,7 +17,7 @@
             rel="stylesheet"
             integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x"
             crossorigin="anonymous">
-    <link rel="stylesheet" th:href="@{css/styleEthan.css}">
+    <link rel="stylesheet" th:href="@{/css/styleEthan.css}">
     <link rel="stylesheet"
           href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css">
     <script
@@ -38,7 +38,7 @@ style="background-color: #B0986F;" >
 <div class="container-fluid d-flex align-items-center">
 
        <img
-        src="img/logo.png" alt="" width="60" height="60"> <a
+        th:src="@{/img/logo.png}" alt="" width="60" height="60"> <a
         class="navbar-brand d-flex align-items-center"
         style="margin-left: 20px;" href="#"> Velapp </a>
 
@@ -71,7 +71,7 @@ style="background-color: #B0986F;" >
 
 <div class="sidebar">
     <center>
-        <img th:src="@{img/prota.jpg}" class="profile_image" alt="">
+        <img th:src="@{/img/prota.jpg}" class="profile_image" alt="">
         <h4>VellApp</h4>
     </center>
 
@@ -88,16 +88,68 @@ style="background-color: #B0986F;" >
         <div class="izquierda">
             <div>Cartera de facturas</div>
             <br >
-            <div class="textonormal">Valor total por recibir: S/.</div>
-            <div class="textonormal">TCEA Total: %</div>
+
             <div class="abajo">
                 <table>
                     <tr class="textotabla">
                         <th>N°</th><th>DEmision</th><th>DPago</th><th>Valor Nominal</th><th>Retencion</th><th>Descuento</th>
                         <th>Valor Neto</th><th>Valor Entregado</th><th>Valor Recibido</th><th>TCEA%</th>
                     </tr>
-                    <tr class="textonormal">
-                        <td>1</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+                    <tr th:each="operacion:${operaciones}" class="textonormal">
+                        <td th:text="${operacion.COperacion}"></td>
+                        <td th:text="${operacion.DEmision}"></td>
+                        <td th:text="${operacion.DPago}"></td>
+                        <td th:text="${operacion.ValorNominal}"></td>
+                        <td th:text="${operacion.Retencion}"></td>                    
+                        <td>
+                        	<span th:if="${operacion.Cartera.Tasa.CTasa == 1}">
+                        		<span th:text="${T(pe.edu.upc.velapp.controller.CalculoController).DescuentoParaTasaNominal(operacion.Cartera.PerTasaNominal, operacion.Cartera.NumDiasTasa, operacion.Cartera.NumDiasPeriodoCapitalizacion, operacion.DPago, operacion.Cartera.DDescuento, operacion.ValorNominal, operacion.Cartera.GastoInicialTotal, operacion.Cartera.GastoFinalTotal)}"></span>
+                        	</span>   
+                        	<span th:unless="${operacion.Cartera.Tasa.CTasa == 1}">
+                        		<span th:text="${T(pe.edu.upc.velapp.controller.CalculoController).DescuentoParaTasaEfectiva(operacion.Cartera.PerTasaEfectiva, operacion.Cartera.NumDiasTasa, operacion.DPago, operacion.Cartera.DDescuento, operacion.ValorNominal, operacion.Cartera.GastoInicialTotal, operacion.Cartera.GastoFinalTotal)}"></span>
+                        	</span>        
+                        </td>
+                      
+                        <td>
+                        	<span th:if="${operacion.Cartera.Tasa.CTasa == 1}">
+                        		<span th:text="${T(pe.edu.upc.velapp.controller.CalculoController).ValorNetoParaTasaNominal(operacion.Cartera.PerTasaNominal, operacion.Cartera.NumDiasTasa, operacion.Cartera.NumDiasPeriodoCapitalizacion, operacion.DPago, operacion.Cartera.DDescuento, operacion.ValorNominal, operacion.Cartera.GastoInicialTotal, operacion.Cartera.GastoFinalTotal)}"></span>
+                        	</span> 
+                        	
+                        	<span th:unless="${operacion.Cartera.Tasa.CTasa == 1}">
+                        		<span th:text="${T(pe.edu.upc.velapp.controller.CalculoController).ValorNetoParaTasaEfectiva(operacion.Cartera.PerTasaEfectiva, operacion.Cartera.NumDiasTasa, operacion.DPago, operacion.Cartera.DDescuento, operacion.ValorNominal, operacion.Cartera.GastoInicialTotal, operacion.Cartera.GastoFinalTotal)}"></span>                
+                        	</span>
+                        </td>
+                        
+                        <td>
+                        	<span th:if="${operacion.Cartera.Tasa.CTasa == 1}">
+                        		<span th:text="${T(pe.edu.upc.velapp.controller.CalculoController).ValorEntregadoParaTasaNominal(operacion.Cartera.PerTasaNominal, operacion.Cartera.NumDiasTasa, operacion.Cartera.NumDiasPeriodoCapitalizacion, operacion.DPago, operacion.Cartera.DDescuento, operacion.ValorNominal, operacion.Cartera.GastoInicialTotal, operacion.Cartera.GastoFinalTotal, operacion.Retencion)}"></span>
+                        	</span> 
+                        	
+                        	<span th:unless="${operacion.Cartera.Tasa.CTasa == 1}">
+                        		<span th:text="${T(pe.edu.upc.velapp.controller.CalculoController).ValorEntregadoParaTasaEfectiva(operacion.Cartera.PerTasaEfectiva, operacion.Cartera.NumDiasTasa, operacion.DPago, operacion.Cartera.DDescuento, operacion.ValorNominal, operacion.Cartera.GastoInicialTotal, operacion.Cartera.GastoFinalTotal, operacion.Retencion)}"></span>                
+                        	</span>
+                        </td>
+                        <td>
+                        	<span th:if="${operacion.Cartera.Tasa.CTasa == 1}">
+                        		<span th:text="${T(pe.edu.upc.velapp.controller.CalculoController).ValorRecibidoParaTasaNominal(operacion.Cartera.PerTasaNominal, operacion.Cartera.NumDiasTasa, operacion.Cartera.NumDiasPeriodoCapitalizacion, operacion.DPago, operacion.Cartera.DDescuento, operacion.ValorNominal, operacion.Cartera.GastoInicialTotal, operacion.Cartera.GastoFinalTotal, operacion.Retencion)}"></span>
+                        	</span> 
+                        	
+                        	<span th:unless="${operacion.Cartera.Tasa.CTasa == 1}">
+                        		<span th:text="${T(pe.edu.upc.velapp.controller.CalculoController).ValorRecibidoParaTasaEfectiva(operacion.Cartera.PerTasaEfectiva, operacion.Cartera.NumDiasTasa, operacion.DPago, operacion.Cartera.DDescuento, operacion.ValorNominal, operacion.Cartera.GastoInicialTotal, operacion.Cartera.GastoFinalTotal, operacion.Retencion)}"></span>                
+                        	</span>
+                        
+                        </td>                      
+                        <td>
+                            <span th:if="${operacion.Cartera.Tasa.CTasa == 1}">
+                        		<span th:text="${T(pe.edu.upc.velapp.controller.CalculoController).TCEAParaTasaNominal(operacion.Cartera.PerTasaNominal, operacion.Cartera.NumDiasTasa, operacion.Cartera.NumDiasPeriodoCapitalizacion, operacion.DPago, operacion.Cartera.DDescuento, operacion.ValorNominal, operacion.Cartera.GastoInicialTotal, operacion.Cartera.GastoFinalTotal, operacion.Retencion)}"></span>
+                        	</span> 
+                        	
+                        	<span th:unless="${operacion.Cartera.Tasa.CTasa == 1}">
+                        		<span th:text="${T(pe.edu.upc.velapp.controller.CalculoController).TCEAParaTasaEfectiva(operacion.Cartera.PerTasaEfectiva, operacion.Cartera.NumDiasTasa, operacion.DPago, operacion.Cartera.DDescuento, operacion.ValorNominal, operacion.Cartera.GastoInicialTotal, operacion.Cartera.GastoFinalTotal, operacion.Retencion)}"></span>                
+                        	</span>
+                        </td>
+                   
+                       
                     </tr>
     
                 </table>
@@ -106,7 +158,7 @@ style="background-color: #B0986F;" >
 
         <div class="derecha">
             <div class="dabajo">
-                <a th:href="@{'/factura'}">
+                <a th:href="@{'/factura/'+${cartera.CCartera}}">
 
                     <button type="button" class="btn btn-success"
                             style="background-color: #0f0f0f ">Nuevo

@@ -11,7 +11,9 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import pe.edu.upc.velapp.entities.Cartera;
 import pe.edu.upc.velapp.entities.Usuario;
+import pe.edu.upc.velapp.service.crud.CarteraService;
 import pe.edu.upc.velapp.service.crud.RegisterService;
 
 @Controller
@@ -21,6 +23,9 @@ public class ListaCarteraController {
 	@Autowired
 	private RegisterService registerService;
 	
+	@Autowired
+	private CarteraService carteraService;
+	
 
 	@GetMapping("{id}")
 	public String response(Model model, @PathVariable Integer id ) {
@@ -29,8 +34,9 @@ public class ListaCarteraController {
 			Optional<Usuario> usuario = registerService.findById(id);
 			if(usuario.isPresent()) {
 				
-				
-				model.addAttribute("usuario", usuario.get().getId());
+				List<Cartera> carteras  = carteraService.filterCarterasByIdUsuario(usuario.get().getId());
+				model.addAttribute("usuario", usuario.get());
+				model.addAttribute("carteras", carteras);
 				
 			}
 		} catch (Exception e) {

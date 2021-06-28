@@ -17,7 +17,7 @@
 	rel="stylesheet"
 	integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x"
 	crossorigin="anonymous">
-<link rel="stylesheet" href="css/styleNuevaFactura.css">
+<link rel="stylesheet" th:href="@{/css/styleNuevaFactura.css}">
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css">
 <script
@@ -39,7 +39,7 @@
 			<div class="container-fluid d-flex align-items-center">
 
 				   <img
-					src="img/logo.png" alt="" width="60" height="60"> <a
+					th:src="@{/img/logo.png}" alt="" width="60" height="60"> <a
 					class="navbar-brand d-flex align-items-center"
 					style="margin-left: 20px;" href="#"> Velapp </a>
 
@@ -71,7 +71,7 @@
 
 		<div class="sidebar">
 			<center>
-				<img src="img/prota.jpg" class="profile_image" alt="">
+				<img th:src="@{/img/prota.jpg}" class="profile_image" alt="">
 				<h4>Velapp</h4>
 			</center>
 
@@ -84,27 +84,33 @@
 
 		<div class="content">
 			<div class="Marco">
+	
+				<form th:action="@{/factura/crearfactura}" th:object="${newFactura}", method="post">
 				<div class="Title">Registro de nueva Factura</div>
-				<div class="all-inputs">
-					<div class="inputs">
-						<h5>Fecha de emision</h5>
-						<input type="date">
-					</div>
-					<div class="inputs">
-						<h5>Fecha de pago</h5>
-						<input type="date">
-					</div>
-					<div class="inputs">
-						<h5>Valor nominal</h5>
-						<input type="number">
-					</div>
-					<div class="inputs">
-						<h5>Retencion</h5>
-						<input type="number">
-					</div>
-				</div>
-				
-				<button type="button" class="btn btn-success">Registrar</button>
+					<div class="all-inputs">
+					
+						<input type="text" class="form-control" th:field="*{COperacion}" hidden="true">
+						<input type="text" class="form-control" th:field="*{Cartera}" hidden="true">
+						
+						<div class="inputs">
+							<h5>Fecha de emision</h5>
+							<input type="datetime" th:field="*{DEmision}" placeholder="2021/06/30 24:00:00">
+						</div>
+						<div class="inputs">
+							<h5>Fecha de pago</h5>
+							<input type="datetime" th:field="*{DPago}" placeholder="2021/06/30 24:00:00">
+						</div>
+						<div class="inputs">
+							<h5>Valor nominal</h5>
+							<input type="text" th:field="*{ValorNominal}">
+						</div>
+						<div class="inputs">
+							<h5>Retencion</h5>
+							<input type="text" th:field="*{Retencion}">
+						</div>	
+					</div>	
+					<button type="submit" class="btn btn-primary">Registrar</button>
+				</form>
 			</div>
 			
 		</div>

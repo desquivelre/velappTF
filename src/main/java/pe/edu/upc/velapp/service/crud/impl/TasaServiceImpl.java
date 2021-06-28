@@ -21,5 +21,10 @@ public class TasaServiceImpl implements TasaService{
 		// TODO Auto-generated method stub
 		return tasaRepository;
 	}
+<<<<<<< Updated upstream
+=======
+
+	
+>>>>>>> Stashed changes
 
 }

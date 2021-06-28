@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.transaction.annotation.Transactional;
 
+import pe.edu.upc.velapp.entities.Cartera;
 import pe.edu.upc.velapp.entities.Usuario;
 
 public interface CrudService<T, ID> {
@@ -28,7 +29,8 @@ public interface CrudService<T, ID> {
 	}
 	
 	@Transactional
-	default T update(T entity) throws Exception {	// Actualiza el entity (Repository->BD)
+	default T update(T entity) throws Exception
+	 {	// Actualiza el entity (Repository->BD)
 		return getRepository().save(entity);
 	}
 	
@@ -37,6 +39,11 @@ public interface CrudService<T, ID> {
 		getRepository().deleteById(id);
 	}
 
+<<<<<<< Updated upstream
+=======
+
+
+>>>>>>> Stashed changes
 	
 	
 }

@@ -25,14 +25,21 @@ public class Cartera {
 	@Column(name = "PerTasaNominal", length = 20, nullable = true)
 	private Float PerTasaNominal;
 	
-	@Column(name = "NumDiasTasa", length = 40)
+	@Column(name = "NumDiasTasa", length = 20)
 	private Integer NumDiasTasa;
 	
-	@Column(name = "NumDiasPeriodoCapitalizacion", length = 40, nullable = true)
+	@Column(name = "NumDiasPeriodoCapitalizacion", length = 20, nullable = true)
 	private Integer NumDiasPeriodoCapitalizacion;
 	
 	@Column(name = "DDescuento")
 	private Date DDescuento;
+	
+	@Column(name = "GastoFinalTotal", length = 20, nullable = true)
+	private Float GastoFinalTotal;
+	
+	@Column(name = "GastoInicialTotal", length = 20, nullable = true)
+	private Float GastoInicialTotal;
+	
 	
 	@ManyToOne
 	@JoinColumn(name = "CUsuario", nullable = false)
@@ -61,16 +68,20 @@ public class Cartera {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Cartera(Integer cCartera, Float perTasaEfectiva, Float perTasaNominal, Integer numDiasPeriodoCapitalizacion,
-			Date dDescuento, pe.edu.upc.velapp.entities.Usuario usuario,
-			pe.edu.upc.velapp.entities.TipoCalendario tipoCalendario, pe.edu.upc.velapp.entities.Tasa tasa,
-			pe.edu.upc.velapp.entities.TipoMoneda tipoMoneda, List<Operacion> operaciones, List<Gasto> gastos) {
+	public Cartera(Integer cCartera, Float perTasaEfectiva, Float perTasaNominal, Integer numDiasTasa,
+			Integer numDiasPeriodoCapitalizacion, Date dDescuento, Float gastoFinalTotal, Float gastoInicialTotal,
+			pe.edu.upc.velapp.entities.Usuario usuario, pe.edu.upc.velapp.entities.TipoCalendario tipoCalendario,
+			pe.edu.upc.velapp.entities.Tasa tasa, pe.edu.upc.velapp.entities.TipoMoneda tipoMoneda,
+			List<Operacion> operaciones, List<Gasto> gastos) {
 		super();
 		CCartera = cCartera;
 		PerTasaEfectiva = perTasaEfectiva;
 		PerTasaNominal = perTasaNominal;
+		NumDiasTasa = numDiasTasa;
 		NumDiasPeriodoCapitalizacion = numDiasPeriodoCapitalizacion;
 		DDescuento = dDescuento;
+		GastoFinalTotal = gastoFinalTotal;
+		GastoInicialTotal = gastoInicialTotal;
 		Usuario = usuario;
 		TipoCalendario = tipoCalendario;
 		Tasa = tasa;
@@ -103,6 +114,14 @@ public class Cartera {
 		PerTasaNominal = perTasaNominal;
 	}
 
+	public Integer getNumDiasTasa() {
+		return NumDiasTasa;
+	}
+
+	public void setNumDiasTasa(Integer numDiasTasa) {
+		NumDiasTasa = numDiasTasa;
+	}
+
 	public Integer getNumDiasPeriodoCapitalizacion() {
 		return NumDiasPeriodoCapitalizacion;
 	}
@@ -117,6 +136,22 @@ public class Cartera {
 
 	public void setDDescuento(Date dDescuento) {
 		DDescuento = dDescuento;
+	}
+
+	public Float getGastoFinalTotal() {
+		return GastoFinalTotal;
+	}
+
+	public void setGastoFinalTotal(Float gastoFinalTotal) {
+		GastoFinalTotal = gastoFinalTotal;
+	}
+
+	public Float getGastoInicialTotal() {
+		return GastoInicialTotal;
+	}
+
+	public void setGastoInicialTotal(Float gastoInicialTotal) {
+		GastoInicialTotal = gastoInicialTotal;
 	}
 
 	public Usuario getUsuario() {
@@ -167,6 +202,9 @@ public class Cartera {
 		this.gastos = gastos;
 	}
 
+	
+
+	
 	
 
 }

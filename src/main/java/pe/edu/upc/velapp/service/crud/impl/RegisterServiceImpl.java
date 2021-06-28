@@ -26,6 +26,7 @@ public class RegisterServiceImpl implements RegisterService {
 	public JpaRepository<Usuario, Integer> getRepository() {
 		return registerRepository;
 	}
+<<<<<<< Updated upstream
 
 
 
@@ -34,6 +35,8 @@ public class RegisterServiceImpl implements RegisterService {
 		// TODO Auto-generated method stub
 		return null;
 	}
+=======
+>>>>>>> Stashed changes
 
 
 
