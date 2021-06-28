@@ -37,6 +37,6 @@ public interface CrudService<T, ID> {
 		getRepository().deleteById(id);
 	}
 
-	List<Usuario> filterById_Usuario(Integer dni) throws Exception;
+	
 	
 }

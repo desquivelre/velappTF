@@ -21,10 +21,5 @@ public class TipoMonedaServiceImpl implements TipoMonedaService {
 		// TODO Auto-generated method stub
 		return tipomonedaRepository;
 	}
-	@Override
-	public List<Usuario> filterById_Usuario(Integer dni) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 }

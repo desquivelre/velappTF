@@ -21,10 +21,5 @@ public class TasaServiceImpl implements TasaService{
 		// TODO Auto-generated method stub
 		return tasaRepository;
 	}
-	@Override
-	public List<Usuario> filterById_Usuario(Integer dni) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 }

@@ -23,10 +23,6 @@ public class CarteraServiceImpl implements CarteraService {
 		return carteraRepository;
 	}
 
-	@Override
-	public List<Usuario> filterById_Usuario(Integer dni) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
-	}
+
 
 }

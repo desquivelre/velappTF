@@ -21,10 +21,6 @@ public class OperacionServiceImpl implements OperacionService {
 		// TODO Auto-generated method stub
 		return operacionRepository;
 	}
-	@Override
-	public List<Usuario> filterById_Usuario(Integer dni) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
-	}
+
 
 }

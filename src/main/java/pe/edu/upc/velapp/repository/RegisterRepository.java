@@ -12,8 +12,8 @@ import pe.edu.upc.velapp.entities.Usuario;
 @Repository
 public interface RegisterRepository extends JpaRepository<Usuario, Integer> {
 	
-	Optional<Usuario>findByUsername(String username);
-	
+	Optional<Usuario> findByUsername(String username);
+
 	
 
 

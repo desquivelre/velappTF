@@ -16,10 +16,10 @@ public class Usuario {
 	@Column(name = "id", length = 4, nullable = false)
 	private Integer id;
 	
-	@Column(name = "Username", length = 20)
+	@Column(name = "Username", length = 120)
 	private String username;
 	
-	@Column(name = "Password", length = 20)
+	@Column(name = "Password", length = 120)
 	private String password;
 	
 

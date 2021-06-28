@@ -21,10 +21,6 @@ public class GastoServiceImpl implements GastoService{
 		// TODO Auto-generated method stub
 		return gastoRepository;
 	}
-	@Override
-	public List<Usuario> filterById_Usuario(Integer dni) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
-	}
+
 
 }
