@@ -33,14 +33,18 @@ public class RegisterController {
 		return "loginvista";
 	}
 	
-	
 	@PostMapping("/auth/registro")
-	public String registro(@Valid @ModelAttribute Usuario usuario, BindingResult result, Model model) {
-	if(result.hasErrors()) {
-		return "redirect:/auth/registro";
-	}else {
-		model.addAttribute("usuario",registerService.registrar(usuario));
-	}
-	return "redirect:/login";
+    public String registro(@Valid @ModelAttribute Usuario usuario, BindingResult result, Model model) {
+    if(result.hasErrors()) {
+
+        System.out.println("Existen errores");
+
+        return "loginvista";
+    }else {
+        model.addAttribute("usuario",registerService.registrar(usuario));
+        System.out.println("Creado Correctamente");
+    }
+    return "redirect:/login";
 }
+
 }

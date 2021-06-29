@@ -10,95 +10,108 @@ import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.Digits;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
+
+import org.hibernate.validator.constraints.Range;
 
 @Entity
 @Table(name="Users")
 public class Usuario {
-	@Id 
-	@Column(name = "id", length = 8, nullable = false)
-	private Integer id;
-	
-	@Column(name = "Username", length = 120)
-	private String username;
-	
-	@Column(name = "Password", length = 120)
-	private String password;
-	
-	@OneToMany(mappedBy = "Usuario", fetch = FetchType.LAZY)
-	private List<Cartera> carteras;
-	
+    @Id 
+    @NotNull
+    @Range(min=10000000,max=99999999)
+    @Column(name = "id", length = 8, nullable = false)
+    private Integer id;
 
-	@OneToMany(mappedBy = "usuario",fetch=FetchType.EAGER,cascade=CascadeType.ALL)
-	private List<Authority>authorities;
+    @NotEmpty
+    @Column(name = "Username", length = 120)
+    private String username;
 
-	private boolean enable;
+    @NotEmpty
+    @Column(name = "Password", length = 120)
+    private String password;
 
-	public Usuario() {
-		super();
-		// TODO Auto-generated constructor stub
-		this.enable=true;
-		this.authorities= new ArrayList<>();
-	}
+    @OneToMany(mappedBy = "Usuario", fetch = FetchType.LAZY)
+    private List<Cartera> carteras;
 
-	public Usuario(Integer cUsuario, String username, String password, List<Cartera> carteras,
-			List<Authority> authorities, boolean enable) {
-		super();
-		this.id = cUsuario;
-		this.username = username;
-		this.password = password;
-		this.carteras = carteras;
-		this.enable=true;
-		this.authorities= new ArrayList<>();
-	}
 
-	public Integer getId() {
-		return id;
-	}
+    @OneToMany(mappedBy = "usuario",fetch=FetchType.EAGER,cascade=CascadeType.ALL)
+    private List<Authority>authorities;
 
-	public void setId(Integer id) {
-		this.id = id;
-	}
+    private boolean enable;
 
-	public String getUsername() {
-		return username;
-	}
+    public Usuario() {
+        super();
+        // TODO Auto-generated constructor stub
+        this.enable=true;
+        this.authorities= new ArrayList<>();
+    }
 
-	public void setUsername(String username) {
-		this.username = username;
-	}
+    public Usuario(Integer cUsuario, String username, String password, List<Cartera> carteras,
+            List<Authority> authorities, boolean enable) {
+        super();
+        this.id = cUsuario;
+        this.username = username;
+        this.password = password;
+        this.carteras = carteras;
+        this.enable=true;
+        this.authorities= new ArrayList<>();
+    }
 
-	public String getPassword() {
-		return password;
-	}
+    public Integer getId() {
+        return id;
+    }
 
-	public void setPassword(String password) {
-		this.password = password;
-	}
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
-	public List<Cartera> getCarteras() {
-		return carteras;
-	}
+    public String getUsername() {
+        return username;
+    }
 
-	public void setCarteras(List<Cartera> carteras) {
-		this.carteras = carteras;
-	}
+    public void setUsername(String username) {
+        this.username = username;
+    }
 
-	public List<Authority> getAuthorities() {
-		return authorities;
-	}
+    public String getPassword() {
+        return password;
+    }
 
-	public void setAuthorities(List<Authority> authorities) {
-		this.authorities = authorities;
-	}
+    public void setPassword(String password) {
+        this.password = password;
+    }
 
-	public boolean isEnable() {
-		return enable;
-	}
+    public List<Cartera> getCarteras() {
+        return carteras;
+    }
 
-	public void setEnable(boolean enable) {
-		this.enable = enable;
-	}
+    public void setCarteras(List<Cartera> carteras) {
+        this.carteras = carteras;
+    }
 
-	
-	
+    public List<Authority> getAuthorities() {
+        return authorities;
+    }
+
+    public void setAuthorities(List<Authority> authorities) {
+        this.authorities = authorities;
+    }
+
+    public boolean isEnable() {
+        return enable;
+    }
+
+    public void setEnable(boolean enable) {
+        this.enable = enable;
+    }
+
+
+
 }

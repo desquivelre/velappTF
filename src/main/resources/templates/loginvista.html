@@ -67,10 +67,24 @@ xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 		
 		<form th:action="@{/auth/registro}" th:object="${usuario}" , method="post">
 			<h4>Registrese</h4>
-			<input class="controls"  th:field ="*{id}" type="text" name="id" id="id" placeholder="Ingrese su dni">
+			<small class="form-text text-danger" th:if="${#fields.hasErrors('id')}" th:errors= "*{id}"></small>
+			
+			<input class="controls"  th:field ="*{id}" type="text" name="id" id="id" placeholder="Ingrese su dni" >
+			
+			
+			<small class="form-text text-danger" th:if="${#fields.hasErrors('username')}" th:errors= "*{username}"></small>
+				
 			<input class="controls" th:field ="*{username}"  type="text" name="Username" id="Username" placeholder="Ingrese su Usuario">
+		
+			
+			<small class="form-text text-danger" th:if="${#fields.hasErrors('password')}" th:errors= "*{password}"></small>
+				
 			<input class="controls"  th:field ="*{password}" type="password" name="password" id="password" placeholder="Ingrese su Contraseña">
+		
 			<p>¿Ya tienes cuenta? <a th:href="@{'/login'}">Inicia Sesión</a></p>
+			
+			
+			
 			<a >
 
 				
