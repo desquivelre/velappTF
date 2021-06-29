@@ -30,6 +30,7 @@ public class CarteraController {
 	public String response(Model model, @PathVariable Integer id) {
 		try {
 			Optional<Cartera> cartera = carteraService.findById(id);
+			
 			if(cartera.isPresent()) {
 				
 				List<Operacion> operaciones  = operacionService.filterOperacionesByIdCartera(cartera.get().getCCartera());

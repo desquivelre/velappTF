@@ -1,6 +1,7 @@
 package pe.edu.upc.velapp.controller;
 
 
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -57,9 +58,32 @@ public class FacturaController {
 	@PostMapping("crearfactura")
 	public String CrearFactura(@ModelAttribute("newFactura") Operacion operacion) {
 		try {
-				
-			Operacion operacionReturn = operacionService.create(operacion);
-					
+			
+			if(operacion.getCartera().getTasa().getCTasa()==1) {
+ 
+				operacion.setTCEA(pe.edu.upc.velapp.controller.CalculoController.TCEAParaTasaNominal(operacion.getCartera().getPerTasaNominal(), operacion.getCartera().getNumDiasTasa(), operacion.getCartera().getNumDiasPeriodoCapitalizacion(), operacion.getDPago(), operacion.getCartera().getDDescuento(), operacion.getValorNominal(), operacion.getCartera().getGastoInicialTotal(), operacion.getCartera().getGastoFinalTotal(), operacion.getRetencion()));	
+				operacion.setValorRecibido(pe.edu.upc.velapp.controller.CalculoController.ValorRecibidoParaTasaNominal(operacion.getCartera().getPerTasaNominal(), operacion.getCartera().getNumDiasTasa(), operacion.getCartera().getNumDiasPeriodoCapitalizacion(), operacion.getDPago(), operacion.getCartera().getDDescuento(), operacion.getValorNominal(), operacion.getCartera().getGastoInicialTotal(), operacion.getCartera().getGastoFinalTotal(), operacion.getRetencion()));
+			}
+			if(operacion.getCartera().getTasa().getCTasa()==2) {
+				 
+				operacion.setTCEA(pe.edu.upc.velapp.controller.CalculoController.TCEAParaTasaEfectiva(operacion.getCartera().getPerTasaEfectiva(), operacion.getCartera().getNumDiasTasa(), operacion.getDPago(), operacion.getCartera().getDDescuento(), operacion.getValorNominal(), operacion.getCartera().getGastoInicialTotal(), operacion.getCartera().getGastoFinalTotal(), operacion.getRetencion()));	
+				operacion.setValorRecibido(pe.edu.upc.velapp.controller.CalculoController.ValorRecibidoParaTasaEfectiva(operacion.getCartera().getPerTasaNominal(), operacion.getCartera().getNumDiasTasa(), operacion.getDPago(), operacion.getCartera().getDDescuento(), operacion.getValorNominal(), operacion.getCartera().getGastoInicialTotal(), operacion.getCartera().getGastoFinalTotal(), operacion.getRetencion()));
+
+			}
+			
+			double scale = Math.pow(10, 2);
+			
+			double valor = operacion.getCartera().getValorRecibidoTotal()+operacion.getValorRecibido();
+			valor=Math.round(valor* scale) / scale;
+			
+            operacion.getCartera().setTCEATotal(operacion.getCartera().getTCEATotal()+operacion.getTCEA());
+            operacion.getCartera().setValorRecibidoTotal(valor);
+                
+            
+            
+            Operacion operacionReturn = operacionService.create(operacion);
+            
+							
 		} catch (Exception e) {
 			e.printStackTrace();
 			System.err.println(e.getMessage());

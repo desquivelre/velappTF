@@ -114,7 +114,7 @@ double perTasaNominal=perTasaNominalConPorcentaje/100;
 	
 	public static double TCEAParaTasaNominal(Float perTasaNominalConPorcentaje, int NumDiasTasa, int NumDiasPeriodoCapitalizacion, Date DPago, Date DDescuento, float ValorNominal, float GastoInicialTotal, float GastoFinalTotal, float Retencion){
 		
-double perTasaNominal=perTasaNominalConPorcentaje/100;
+		double perTasaNominal=perTasaNominalConPorcentaje/100;
 		
 		long CantidadDiasLong = (long)(DDescuento.getTime()/86400000)-(long)(DPago.getTime()/86400000);
 		double CantidadDias=(double)CantidadDiasLong;

@@ -72,6 +72,8 @@ public class CrearCarteraController {
 			cartera.setUsuario(usuario.get());
 			cartera.setGastoInicialTotal((float)0.0);
 			cartera.setGastoFinalTotal((float)0.0);
+			cartera.setTCEATotal((double)0.0);
+			cartera.setValorRecibidoTotal((double)0.0);
 			
 			if(usuario.isPresent()) {
 						

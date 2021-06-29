@@ -42,6 +42,11 @@ public class Cartera {
 	@Column(name = "GastoInicialTotal", length = 20, nullable = true)
 	private Float GastoInicialTotal;
 	
+	@Column(name = "TCEATotal", length = 20, nullable = true)
+	private Double TCEATotal;
+	
+	@Column(name = "ValorRecibidoTotal", length = 20, nullable = true)
+	private Double ValorRecibidoTotal;
 	
 	@ManyToOne
 	@JoinColumn(name = "CUsuario", nullable = false)
@@ -72,9 +77,9 @@ public class Cartera {
 
 	public Cartera(Integer cCartera, Float perTasaEfectiva, Float perTasaNominal, Integer numDiasTasa,
 			Integer numDiasPeriodoCapitalizacion, Date dDescuento, Float gastoFinalTotal, Float gastoInicialTotal,
-			pe.edu.upc.velapp.entities.Usuario usuario, pe.edu.upc.velapp.entities.TipoCalendario tipoCalendario,
-			pe.edu.upc.velapp.entities.Tasa tasa, pe.edu.upc.velapp.entities.TipoMoneda tipoMoneda,
-			List<Operacion> operaciones, List<Gasto> gastos) {
+			Double tCEATotal, Double valorRecibidoTotal, pe.edu.upc.velapp.entities.Usuario usuario,
+			pe.edu.upc.velapp.entities.TipoCalendario tipoCalendario, pe.edu.upc.velapp.entities.Tasa tasa,
+			pe.edu.upc.velapp.entities.TipoMoneda tipoMoneda, List<Operacion> operaciones, List<Gasto> gastos) {
 		super();
 		CCartera = cCartera;
 		PerTasaEfectiva = perTasaEfectiva;
@@ -84,6 +89,8 @@ public class Cartera {
 		DDescuento = dDescuento;
 		GastoFinalTotal = gastoFinalTotal;
 		GastoInicialTotal = gastoInicialTotal;
+		TCEATotal = tCEATotal;
+		ValorRecibidoTotal = valorRecibidoTotal;
 		Usuario = usuario;
 		TipoCalendario = tipoCalendario;
 		Tasa = tasa;
@@ -156,6 +163,22 @@ public class Cartera {
 		GastoInicialTotal = gastoInicialTotal;
 	}
 
+	public Double getTCEATotal() {
+		return TCEATotal;
+	}
+
+	public void setTCEATotal(Double tCEATotal) {
+		TCEATotal = tCEATotal;
+	}
+
+	public Double getValorRecibidoTotal() {
+		return ValorRecibidoTotal;
+	}
+
+	public void setValorRecibidoTotal(Double valorRecibidoTotal) {
+		ValorRecibidoTotal = valorRecibidoTotal;
+	}
+
 	public Usuario getUsuario() {
 		return Usuario;
 	}
@@ -204,7 +227,6 @@ public class Cartera {
 		this.gastos = gastos;
 	}
 
-	
 	
 
 	

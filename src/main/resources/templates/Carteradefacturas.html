@@ -87,6 +87,15 @@ style="background-color: #B0986F;" >
             <div>Cartera de facturas</div>
             <br >
 
+				<div class="arriba">
+					<h2>Datos de la cartera</h2><br>
+					<h4 th:text="'Código del propietario: ' + ${cartera.usuario.username}"></h4>
+					<h4 th:text="'Fecha de descuento: ' + ${cartera.DDescuento}"></h4>
+					<h4 th:text="'Tipo de tasa: ' + ${cartera.Tasa.NTasa}"></h4>
+					<h4 th:text="'Valor recibido total: ' + ${cartera.ValorRecibidoTotal}"></h4>
+					
+				</div>
+
             <div class="abajo">
                 <table>
                     <tr class="textotabla">
